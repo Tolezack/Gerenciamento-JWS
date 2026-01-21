@@ -5,116 +5,914 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JordanWearStore - Gerenciador Completo</title>
     <style>
-        /* [MANTENHA TODO O CSS ANTERIOR IGUAL] */
-        /* Vou adicionar apenas alguns ajustes */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
-        .quick-actions {
+        body {
+            background: #f0f2f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            background: linear-gradient(135deg, #000 0%, #333 100%);
+            color: white;
+            padding: 25px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+        
+        .logo h1 {
+            font-size: 28px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 32px;
+        }
+        
+        /* CONTROLES SIMPLES */
+        .simple-controls {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .action-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.3s;
+            font-size: 15px;
+            min-width: 180px;
+        }
+        
+        .action-btn.export {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .action-btn.export:hover {
+            background: #45a049;
+        }
+        
+        .action-btn.add {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .action-btn.add:hover {
+            background: #0b7dda;
+        }
+        
+        .action-btn.load {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .action-btn.load:hover {
+            background: #e68900;
+        }
+        
+        .action-btn.copy {
+            background: #9C27B0;
+            color: white;
+        }
+        
+        .action-btn.copy:hover {
+            background: #7b1fa2;
+        }
+        
+        .action-btn.reset {
+            background: #f44336;
+            color: white;
+        }
+        
+        .action-btn.reset:hover {
+            background: #d32f2f;
+        }
+        
+        /* DASHBOARD */
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+        
+        .stat-card h3 {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        /* FORMULÁRIO ADICIONAR PRODUTO */
+        .add-product-form {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            display: none;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2196F3;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        
+        /* GALERIA NO FORMULÁRIO */
+        .gallery-section {
+            margin: 25px 0;
+            padding: 20px;
+            border: 2px dashed #ddd;
+            border-radius: 12px;
+            background: #f9f9f9;
+        }
+        
+        .gallery-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .gallery-input-container {
             display: flex;
             gap: 10px;
-            margin-top: 10px;
-            flex-wrap: wrap;
+            margin-bottom: 15px;
         }
         
-        .quick-btn {
-            padding: 6px 12px;
-            background: #f0f0f0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        
-        .quick-btn:hover {
-            background: #e0e0e0;
-        }
-        
-        .sample-images {
-            background: #f8f9fa;
-            border: 1px solid #e9ecef;
+        .gallery-input {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #ddd;
             border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-size: 13px;
+            font-size: 14px;
         }
         
-        .sample-images h5 {
-            margin-bottom: 10px;
-            color: #495057;
-        }
-        
-        .sample-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        .gallery-add-btn {
+            padding: 12px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
             gap: 8px;
         }
         
-        .sample-link {
-            background: white;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 11px;
-            word-break: break-all;
-            border: 1px solid #dee2e6;
-            cursor: pointer;
+        .gallery-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 10px;
+            margin-top: 15px;
         }
         
-        .sample-link:hover {
-            background: #e9ecef;
+        .gallery-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 2px solid #eee;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100px;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .gallery-item-remove {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: #e74c3c;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+        
+        .form-btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 15px;
+        }
+        
+        .form-btn.save {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .form-btn.cancel {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        /* TABELA DE PRODUTOS */
+        .products-table {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            margin-bottom: 40px;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        thead {
+            background: #000;
+            color: white;
+        }
+        
+        th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        
+        tbody tr:hover {
+            background: #f9f9f9;
+        }
+        
+        td {
+            padding: 12px 15px;
+            vertical-align: middle;
+        }
+        
+        .product-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+        
+        .product-name {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        .product-category {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .category-camisas {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+        
+        .category-calcas {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        
+        .stock-cell {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        .table-actions {
+            display: flex;
+            gap: 5px;
+            flex-wrap: wrap;
+        }
+        
+        .table-btn {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        
+        .table-btn.edit {
+            background: #f39c12;
+            color: white;
+        }
+        
+        .table-btn.gallery {
+            background: #3498db;
+            color: white;
+        }
+        
+        .table-btn.plus {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .table-btn.minus {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .table-btn.delete {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        /* MODAL DE GALERIA */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1002;
+            padding: 20px;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .modal-header {
+            padding: 20px;
+            background: #000;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h2 {
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-body {
+            padding: 20px;
+            overflow-y: auto;
+            flex: 1;
+        }
+        
+        .current-image-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .current-image {
+            max-width: 100%;
+            max-height: 400px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-thumbnails {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .thumbnail {
+            border-radius: 6px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        
+        .thumbnail.active {
+            border-color: #2196F3;
+        }
+        
+        .thumbnail img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+        }
+        
+        .modal-gallery-controls {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .modal-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .modal-btn.primary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .modal-btn.secondary {
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .modal-btn.danger {
+            background: #e74c3c;
+            color: white;
+        }
+        
+        .stock-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+        
+        .stock-high {
+            background: #27ae60;
+        }
+        
+        .stock-medium {
+            background: #f39c12;
+        }
+        
+        .stock-low {
+            background: #e74c3c;
+        }
+        
+        .stock-out {
+            background: #95a5a6;
+        }
+        
+        /* NOTIFICAÇÃO */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: #27ae60;
+            color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            z-index: 1001;
+            display: none;
+            align-items: center;
+            gap: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .notification.error {
+            background: #e74c3c;
+        }
+        
+        .notification.info {
+            background: #3498db;
+        }
+        
+        .status-badge {
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .status-instock {
+            background: #d4edda;
+            color: #155724;
+        }
+        
+        .status-low {
+            background: #fff3cd;
+            color: #856404;
+        }
+        
+        .status-out {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        
+        /* PRODUTOS CARREGADOS INFO */
+        .loaded-info {
+            background: #e8f5e9;
+            border-left: 4px solid #4CAF50;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .simple-controls {
+                flex-direction: column;
+            }
+            
+            .action-btn {
+                width: 100%;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            th, td {
+                padding: 10px 8px;
+                font-size: 13px;
+            }
+            
+            .table-actions {
+                flex-direction: column;
+            }
+            
+            .table-btn {
+                width: 100%;
+            }
+            
+            .gallery-preview {
+                grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            }
+            
+            .modal-gallery-controls {
+                flex-direction: column;
+            }
+            
+            .modal-btn {
+                width: 100%;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- [MANTENHA TODO O HTML ANTERIOR IGUAL] -->
-    
-    <!-- APENAS VOU ADICIONAR AS IMAGENS PADRÃO NO MODAL -->
-    <div class="modal-overlay" id="imagesModal">
-        <div class="modal">
-            <div class="modal-header">
-                <h3 id="modalProductName">Gerenciar Imagens</h3>
-                <button class="close-modal" onclick="closeImagesModal()">×</button>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>
+                    <span class="logo-icon">👕</span>
+                    JordanWearStore - Gerenciador Completo
+                </h1>
+                <p>Gerencie produtos, galerias de imagens e gere código para seu site</p>
             </div>
-            <div class="modal-body">
+        </div>
+    </header>
+    
+    <div class="container">
+        <!-- CONTROLES SIMPLES -->
+        <div class="simple-controls">
+            <button class="action-btn add" onclick="toggleAddProduct()">
+                <span>➕</span> Adicionar Produto
+            </button>
+            
+            <button class="action-btn export" onclick="exportToJS()">
+                <span>💾</span> Salvar Código JS
+            </button>
+            
+            <button class="action-btn copy" onclick="copyToClipboard()">
+                <span>📋</span> Copiar Código
+            </button>
+            
+            <button class="action-btn load" onclick="loadFromFile()">
+                <span>📂</span> Carregar Produtos
+            </button>
+            
+            <button class="action-btn reset" onclick="resetToDefault()">
+                <span>🔄</span> Resetar Produtos
+            </button>
+        </div>
+        
+        <!-- MENSAGEM DE PRODUTOS CARREGADOS -->
+        <div class="loaded-info" id="loadedInfo" style="display: none;">
+            <span>✅</span>
+            <div>
+                <strong>36 produtos carregados!</strong>
+                <div style="font-size: 14px; color: #666;">Todas as camisas e calças estão disponíveis para edição.</div>
+            </div>
+        </div>
+        
+        <!-- FORMULÁRIO ADICIONAR PRODUTO COM GALERIA -->
+        <div class="add-product-form" id="addProductForm">
+            <h2 style="margin-bottom: 20px; color: #333;">➕ Adicionar Novo Produto</h2>
+            
+            <div class="form-grid">
                 <div class="form-group">
-                    <label>Imagem Principal</label>
-                    <input type="text" id="editMainImage" placeholder="URL da imagem principal">
+                    <label for="newProductId">ID do Produto *</label>
+                    <input type="text" id="newProductId" placeholder="Ex: camisa19 ou calca19">
                 </div>
                 
                 <div class="form-group">
-                    <label>Imagens Adicionais</label>
-                    <div class="images-gallery" id="editImagesGallery">
-                        <!-- Imagens serão inseridas aqui -->
-                    </div>
-                    
-                    <div class="image-url-input">
-                        <input type="text" id="editImageUrl" placeholder="Cole a URL de uma imagem">
-                        <button type="button" onclick="addImageToGallery()">Adicionar</button>
-                    </div>
-                    
-                    <!-- AMOSTRAS DE IMAGENS -->
-                    <div class="sample-images">
-                        <h5>📸 Imagens Sugeridas (clique para adicionar):</h5>
-                        <div class="sample-links" id="sampleImagesList">
-                            <!-- As imagens sugeridas serão inseridas aqui pelo JavaScript -->
-                        </div>
-                    </div>
+                    <label for="newProductName">Nome do Produto *</label>
+                    <input type="text" id="newProductName" placeholder="Ex: Camisa Jordan Nova">
                 </div>
                 
-                <div class="form-actions">
-                    <button class="form-btn cancel" onclick="closeImagesModal()">Cancelar</button>
-                    <button class="form-btn save" onclick="saveProductImages()">Salvar Imagens</button>
+                <div class="form-group">
+                    <label for="newProductCategory">Categoria *</label>
+                    <select id="newProductCategory">
+                        <option value="camisas">Camisa</option>
+                        <option value="calcas">Calça</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="newProductPrice">Preço (R$) *</label>
+                    <input type="number" id="newProductPrice" min="0" step="0.01" placeholder="Ex: 299.90">
+                </div>
+                
+                <div class="form-group">
+                    <label for="newProductStock">Estoque *</label>
+                    <input type="number" id="newProductStock" min="0" placeholder="Ex: 25">
+                </div>
+                
+                <div class="form-group">
+                    <label for="newProductImage">URL da Imagem Principal *</label>
+                    <input type="text" id="newProductImage" placeholder="https://exemplo.com/imagem.jpg">
+                </div>
+            </div>
+            
+            <!-- SEÇÃO DE GALERIA -->
+            <div class="gallery-section">
+                <h3>🖼️ Galeria de Imagens (Opcional)</h3>
+                <p style="color: #666; margin-bottom: 15px; font-size: 14px;">
+                    Adicione URLs de imagens extras para a galeria do produto. A primeira imagem será usada como principal.
+                </p>
+                
+                <div class="gallery-input-container">
+                    <input type="text" id="galleryImageUrl" class="gallery-input" placeholder="Cole aqui a URL de uma imagem">
+                    <button type="button" class="gallery-add-btn" onclick="addGalleryImage()">
+                        <span>+</span> Adicionar
+                    </button>
+                </div>
+                
+                <div id="galleryPreview" class="gallery-preview">
+                    <!-- Imagens da galeria serão exibidas aqui -->
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="newProductDescription">Descrição</label>
+                <textarea id="newProductDescription" placeholder="Descrição do produto..." rows="4"></textarea>
+            </div>
+            
+            <div class="form-actions">
+                <button class="form-btn cancel" onclick="toggleAddProduct()">Cancelar</button>
+                <button class="form-btn save" onclick="addNewProduct()">Salvar Produto</button>
+            </div>
+        </div>
+        
+        <!-- DASHBOARD -->
+        <div class="dashboard-stats">
+            <div class="stat-card">
+                <h3>Total de Produtos</h3>
+                <div class="stat-value" id="totalProducts">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Camisas em Estoque</h3>
+                <div class="stat-value" id="camisasStock">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Calças em Estoque</h3>
+                <div class="stat-value" id="calcasStock">0</div>
+            </div>
+            <div class="stat-card">
+                <h3>Valor Total</h3>
+                <div class="stat-value" id="totalValue">R$ 0,00</div>
+            </div>
+        </div>
+        
+        <!-- TABELA DE PRODUTOS -->
+        <div class="products-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto</th>
+                        <th>Categoria</th>
+                        <th>Preço</th>
+                        <th>Estoque</th>
+                        <th>Status</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody id="productsTableBody">
+                    <!-- Produtos serão inseridos aqui -->
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- INFORMAÇÕES -->
+        <div style="text-align: center; color: #666; font-size: 14px; margin-top: 30px; padding: 20px; background: white; border-radius: 12px;">
+            <p><strong>💡 Como usar este gerenciador:</strong></p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 15px; text-align: left;">
+                <div>
+                    <p><strong>1. Editar Produtos</strong></p>
+                    <p>• Clique em "Editar" para alterar estoque</p>
+                    <p>• Use "+" e "-" para ajustar quantidade</p>
+                    <p>• Clique em "Galeria" para gerenciar imagens</p>
+                </div>
+                <div>
+                    <p><strong>2. Galerias de Imagens</strong></p>
+                    <p>• Cada produto pode ter múltiplas imagens</p>
+                    <p>• A primeira imagem é a principal</p>
+                    <p>• Adicione URLs no modal da galeria</p>
+                </div>
+                <div>
+                    <p><strong>3. Exportar Código</strong></p>
+                    <p>• "Copiar Código" copia para área de transferência</p>
+                    <p>• "Salvar Código JS" baixa um arquivo .js</p>
+                    <p>• Cole o código no seu site JordanWearStore</p>
                 </div>
             </div>
         </div>
     </div>
+    
+    <!-- MODAL DE GALERIA -->
+    <div class="modal-overlay" id="galleryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalProductName">📸 Galeria de Imagens</h2>
+                <button class="modal-close" onclick="closeGalleryModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="current-image-container">
+                    <img id="currentGalleryImage" src="" alt="Imagem atual" class="current-image" onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+não+carregada'">
+                </div>
+                
+                <div id="galleryThumbnails" class="gallery-thumbnails">
+                    <!-- Miniaturas serão inseridas aqui -->
+                </div>
+                
+                <div class="modal-gallery-controls">
+                    <button class="modal-btn secondary" onclick="addImageToGallery()">
+                        ➕ Adicionar Nova Imagem
+                    </button>
+                    <button class="modal-btn danger" onclick="removeCurrentImage()">
+                        🗑️ Remover Imagem Atual
+                    </button>
+                    <button class="modal-btn primary" onclick="saveGalleryChanges()">
+                        💾 Salvar Alterações
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- NOTIFICAÇÃO -->
+    <div class="notification" id="notification"></div>
 
     <script>
         // ============================================
-        // TODOS OS 36 PRODUTOS COMPLETOS
+        // SISTEMA AVANÇADO COM GALERIA DE IMAGENS
         // ============================================
         
+        // DADOS COMPLETOS COM TODOS OS 36 PRODUTOS
         let produtos = [
             // ======================================
-            // CAMISAS - 18 PRODUTOS COMPLETOS
+            // CAMISAS - 18 PRODUTOS
             // ======================================
             {
                 id: 'camisa1',
@@ -141,8 +939,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Design retrô inspirado nos anos 90 com logo bordado. Detalhes em contraste.'
             },
@@ -156,8 +953,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tecnologia de alta performance para atividades esportivas. Secagem rápida.'
             },
@@ -171,8 +967,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Edição especial com assinatura bordada e detalhes premium em acabamento sofisticado.'
             },
@@ -186,8 +981,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Estilo urbano com design moderno e conforto máximo para o dia a dia.'
             },
@@ -200,9 +994,7 @@
                 imagem: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',
                 imagens: [
                     'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Básica essencial para o dia a dia, super confortável e versátil.'
             },
@@ -216,8 +1008,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Linha profissional com materiais de alta qualidade e durabilidade.'
             },
@@ -231,8 +1022,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Design elegante para jogos noturnos e eventos especiais.'
             },
@@ -246,8 +1036,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Edição verão com tecido leve e respirabilidade máxima.'
             },
@@ -261,8 +1050,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Edição limitada numerada, apenas 100 unidades produzidas.'
             },
@@ -276,8 +1064,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tecnologia Air Max para máximo conforto e estilo.'
             },
@@ -291,8 +1078,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Flexibilidade urbana com design contemporâneo.'
             },
@@ -306,8 +1092,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Inspirada nas quadras com estilo esportivo moderno.'
             },
@@ -321,8 +1106,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Herança Jordan com detalhes clássicos e modernos.'
             },
@@ -336,8 +1120,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tecnologia Bounce para liberdade de movimento.'
             },
@@ -351,8 +1134,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Conforto React com resposta energética premium.'
             },
@@ -366,8 +1148,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tecnologia Zoom para velocidade e agilidade.'
             },
@@ -381,14 +1162,13 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Sistema FlyEase para fácil uso e máximo conforto.'
             },
             
             // ======================================
-            // CALÇAS - 18 PRODUTOS COMPLETOS
+            // CALÇAS - 18 PRODUTOS
             // ======================================
             {
                 id: 'calca1',
@@ -400,8 +1180,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Jeans clássico com elastano para máximo conforto no dia a dia.'
             },
@@ -415,8 +1194,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Cargo prática com múltiplos bolsos e design utilitário.'
             },
@@ -430,8 +1208,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Moletom ultra confortável para relaxar em estilo.'
             },
@@ -445,8 +1222,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Chino executivo para ocasiões formais e casuais.'
             },
@@ -460,8 +1236,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Jogger esportiva com ajuste perfeito e mobilidade.'
             },
@@ -475,8 +1250,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Social premium com corte italiano e tecido de alta qualidade.'
             },
@@ -490,8 +1264,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tactel de performance para atividades físicas intensas.'
             },
@@ -505,8 +1278,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Wide leg fashion com corte moderno e tendência streetwear.'
             },
@@ -520,8 +1292,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Linho leve e respirável para os dias mais quentes.'
             },
@@ -535,8 +1306,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Couro legítimo com design urbano e estilo ousado.'
             },
@@ -550,8 +1320,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Sarja slim fit com corte moderno e ajuste perfeito.'
             },
@@ -565,8 +1334,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tactel para atividades físicas com máxima liberdade.'
             },
@@ -580,8 +1348,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Moletom tech fleece com tecnologia térmica avançada.'
             },
@@ -595,8 +1362,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Jeans skinny fit com elastano e corte moderno.'
             },
@@ -610,8 +1376,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Cargo estilo militar com múltiplos bolsos funcionais.'
             },
@@ -625,8 +1390,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Sarja regular fit para uso casual e confortável.'
             },
@@ -640,8 +1404,7 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Tactel profissional para alto rendimento esportivo.'
             },
@@ -655,139 +1418,791 @@
                 imagens: [
                     'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop',
                     'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
+                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
                 ],
                 descricao: 'Jeans relaxed fit para máximo conforto no dia a dia.'
             }
         ];
+
+        // Variáveis para controle da galeria
+        let currentProductId = null;
+        let galleryImages = [];
+        let currentGalleryIndex = 0;
         
         // ============================================
-        // IMAGENS SUGERIDAS (para facilitar)
+        // FUNÇÕES PRINCIPAIS
         // ============================================
-        
-        const imagensSugeridas = {
-            camisas: [
-                'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1523381140794-a1eef18a37c1?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-            ],
-            calcas: [
-                'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop',
-                'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop'
-            ]
-        };
-        
-        // ============================================
-        // FUNÇÕES ADICIONAIS PARA AS IMAGENS SUGERIDAS
-        // ============================================
-        
-        function showSampleImages(categoria) {
-            const sampleList = document.getElementById('sampleImagesList');
-            const images = imagensSugeridas[categoria] || [...imagensSugeridas.camisas, ...imagensSugeridas.calcas];
-            
-            let html = '';
-            images.forEach((img, index) => {
-                html += `
-                <div class="sample-link" onclick="addSampleImage('${img}')" title="Clique para adicionar">
-                    ${img.substring(0, 40)}...
-                </div>
-                `;
-            });
-            
-            sampleList.innerHTML = html;
-        }
-        
-        function addSampleImage(url) {
-            document.getElementById('editImageUrl').value = url;
-            addImageToGallery();
-        }
-        
-        // MODIFICAR A FUNÇÃO manageProductImages
-        function manageProductImages(productId) {
-            const produto = produtos.find(p => p.id === productId);
-            if(!produto) return;
-            
-            editingProductId = productId;
-            currentAdditionalImages = produto.imagens ? [...produto.imagens] : [];
-            
-            document.getElementById('modalProductName').textContent = `Imagens: ${produto.nome}`;
-            document.getElementById('editMainImage').value = produto.imagem;
-            
-            renderImagesGallery();
-            showSampleImages(produto.categoria);
-            
-            document.getElementById('imagesModal').classList.add('active');
-        }
-        
-        // [MANTENHA TODAS AS OUTRAS FUNÇÕES DO CÓDIGO ANTERIOR]
-        // (loadFromStorage, saveToStorage, updateDashboard, renderProductsTable, etc.)
         
         // INICIALIZAR
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('📸 Sistema completo com 36 produtos!');
+            console.log('✅ Sistema JordanWearStore carregado com 36 produtos!');
             loadFromStorage();
             updateDashboard();
             renderProductsTable();
+            
+            // Mostrar mensagem de produtos carregados
+            document.getElementById('loadedInfo').style.display = 'flex';
         });
         
-        // [ADICIONE AQUI TODAS AS OUTRAS FUNÇÕES DO CÓDIGO ANTERIOR]
-        // (toggleAddProduct, addNewProduct, editProduct, updateStock, exportToJS, copyToClipboard, loadFromFile, etc.)
+        // SALVAR NO LOCALSTORAGE
+        function saveToStorage() {
+            try {
+                localStorage.setItem('jordanwearstore_produtos', JSON.stringify(produtos));
+            } catch(error) {
+                console.error('Erro ao salvar:', error);
+            }
+        }
         
-        // FUNÇÃO PARA ADICIONAR IMAGENS PADRÃO NO FORMULÁRIO DE NOVO PRODUTO
-        function addDefaultImages() {
-            const categoria = document.getElementById('newProductCategory').value;
-            const defaultImages = categoria === 'camisas' 
-                ? imagensSugeridas.camisas.slice(0, 3)
-                : imagensSugeridas.calcas.slice(0, 3);
+        // CARREGAR DO LOCALSTORAGE
+        function loadFromStorage() {
+            try {
+                const saved = localStorage.getItem('jordanwearstore_produtos');
+                if(saved) {
+                    produtos = JSON.parse(saved);
+                    showNotification('Dados carregados do armazenamento local', 'info');
+                }
+            } catch(error) {
+                console.error('Erro ao carregar:', error);
+            }
+        }
+        
+        // RESETAR PARA DADOS PADRÃO
+        function resetToDefault() {
+            if(confirm('Tem certeza que deseja resetar todos os produtos para os valores padrão? Isso irá substituir todas as alterações.')) {
+                // Recarregar os dados padrão (os 36 produtos definidos acima)
+                produtos = [...produtos]; // Isso recria o array com os dados iniciais
+                
+                // Se você quiser realmente resetar para os dados originais exatos,
+                // precisaríamos recarregar a página. Mas vamos apenas usar o array existente.
+                
+                saveToStorage();
+                renderProductsTable();
+                updateDashboard();
+                showNotification('Produtos resetados para valores padrão!', 'success');
+            }
+        }
+        
+        // ATUALIZAR DASHBOARD
+        function updateDashboard() {
+            const totalProducts = produtos.length;
+            const camisasStock = produtos
+                .filter(p => p.categoria === 'camisas')
+                .reduce((sum, p) => sum + p.estoque, 0);
+            const calcasStock = produtos
+                .filter(p => p.categoria === 'calcas')
+                .reduce((sum, p) => sum + p.estoque, 0);
+            const totalValue = produtos
+                .reduce((sum, p) => sum + (p.preco * p.estoque), 0);
             
-            const container = document.getElementById('additionalImagesContainer');
+            document.getElementById('totalProducts').textContent = totalProducts;
+            document.getElementById('camisasStock').textContent = camisasStock;
+            document.getElementById('calcasStock').textContent = calcasStock;
+            document.getElementById('totalValue').textContent = `R$ ${totalValue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
+        }
+        
+        // RENDERIZAR TABELA
+        function renderProductsTable() {
+            const tbody = document.getElementById('productsTableBody');
+            let html = '';
+            
+            // Ordenar: camisas primeiro, depois calças
+            const produtosOrdenados = [...produtos].sort((a, b) => {
+                if(a.categoria !== b.categoria) {
+                    return a.categoria === 'camisas' ? -1 : 1;
+                }
+                const numA = parseInt(a.id.replace(/\D/g, '')) || 0;
+                const numB = parseInt(b.id.replace(/\D/g, '')) || 0;
+                return numA - numB;
+            });
+            
+            produtosOrdenados.forEach(produto => {
+                const status = getStockStatus(produto.estoque);
+                const statusClass = getStockClass(produto.estoque);
+                const statusText = getStockText(produto.estoque);
+                const hasGallery = produto.imagens && produto.imagens.length > 0;
+                const totalImages = hasGallery ? produto.imagens.length + 1 : 1; // +1 para imagem principal
+                
+                html += `
+                <tr>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <img src="${produto.imagem}" alt="${produto.nome}" class="product-img" 
+                                 onerror="this.src='https://via.placeholder.com/50x50?text=Sem+imagem'">
+                            <div>
+                                <div class="product-name">${produto.nome}</div>
+                                <div style="font-size: 12px; color: #777;">ID: ${produto.id}</div>
+                                <div style="font-size: 11px; color: ${hasGallery ? '#3498db' : '#95a5a6'};">
+                                    📸 ${totalImages} imagem${totalImages !== 1 ? 'ns' : ''}
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="product-category category-${produto.categoria}">
+                            ${produto.categoria === 'camisas' ? 'Camisa' : 'Calça'}
+                        </span>
+                    </td>
+                    <td class="stock-cell">R$ ${produto.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
+                    <td class="stock-cell">
+                        <div style="display: flex; align-items: center; gap: 5px;">
+                            <span class="stock-indicator ${statusClass}"></span>
+                            ${produto.estoque}
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-${status}">${statusText}</span>
+                    </td>
+                    <td>
+                        <div class="table-actions">
+                            <button class="table-btn edit" onclick="editProduct('${produto.id}')" title="Editar estoque">
+                                ✏️ Editar
+                            </button>
+                            <button class="table-btn gallery" onclick="openGalleryModal('${produto.id}')" title="Gerenciar galeria">
+                                📸 Galeria
+                            </button>
+                            <button class="table-btn plus" onclick="updateStock('${produto.id}', 1)" title="Aumentar estoque">
+                                ➕
+                            </button>
+                            <button class="table-btn minus" onclick="updateStock('${produto.id}', -1)" title="Reduzir estoque">
+                                ➖
+                            </button>
+                            <button class="table-btn delete" onclick="deleteProduct('${produto.id}')" title="Excluir produto">
+                                🗑️
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                `;
+            });
+            
+            tbody.innerHTML = html;
+        }
+        
+        // EDITAR PRODUTO
+        function editProduct(productId) {
+            const produto = produtos.find(p => p.id === productId);
+            if(!produto) return;
+            
+            const novoEstoque = prompt(`Digite o novo estoque para "${produto.nome}":`, produto.estoque);
+            if(novoEstoque === null) return;
+            
+            const estoqueNum = parseInt(novoEstoque);
+            if(isNaN(estoqueNum) || estoqueNum < 0) {
+                showNotification('Valor inválido! Digite um número maior ou igual a 0.', 'error');
+                return;
+            }
+            
+            produto.estoque = estoqueNum;
+            saveToStorage();
+            renderProductsTable();
+            updateDashboard();
+            showNotification(`Estoque de "${produto.nome}" atualizado para ${estoqueNum}`, 'success');
+        }
+        
+        // EXCLUIR PRODUTO
+        function deleteProduct(productId) {
+            const produto = produtos.find(p => p.id === productId);
+            if(!produto) return;
+            
+            if(confirm(`Tem certeza que deseja excluir o produto "${produto.nome}"?\nEsta ação não pode ser desfeita.`)) {
+                const index = produtos.findIndex(p => p.id === productId);
+                if(index !== -1) {
+                    produtos.splice(index, 1);
+                    saveToStorage();
+                    renderProductsTable();
+                    updateDashboard();
+                    showNotification(`Produto "${produto.nome}" excluído com sucesso!`, 'success');
+                }
+            }
+        }
+        
+        // ATUALIZAR ESTOQUE
+        function updateStock(productId, change) {
+            const produto = produtos.find(p => p.id === productId);
+            if(!produto) return;
+            
+            const newStock = produto.estoque + change;
+            
+            if(newStock < 0) {
+                showNotification('Estoque não pode ser negativo!', 'error');
+                return;
+            }
+            
+            produto.estoque = newStock;
+            saveToStorage();
+            renderProductsTable();
+            updateDashboard();
+            
+            const action = change > 0 ? 'aumentado' : 'reduzido';
+            showNotification(`Estoque ${action} para ${newStock} - ${produto.nome}`, 'success');
+        }
+        
+        // ADICIONAR NOVO PRODUTO
+        function toggleAddProduct() {
+            const form = document.getElementById('addProductForm');
+            form.style.display = form.style.display === 'block' ? 'none' : 'block';
+            
+            if(form.style.display === 'block') {
+                // Limpar formulário
+                document.getElementById('newProductId').value = '';
+                document.getElementById('newProductName').value = '';
+                document.getElementById('newProductCategory').value = 'camisas';
+                document.getElementById('newProductPrice').value = '';
+                document.getElementById('newProductStock').value = '';
+                document.getElementById('newProductImage').value = '';
+                document.getElementById('newProductDescription').value = '';
+                document.getElementById('galleryImageUrl').value = '';
+                
+                // Limpar galeria
+                document.getElementById('galleryPreview').innerHTML = '';
+                
+                // Gerar ID automático
+                const categoria = document.getElementById('newProductCategory').value;
+                const ids = produtos.filter(p => p.categoria === categoria).map(p => {
+                    const num = parseInt(p.id.replace(categoria.slice(0, -1), '')) || 0;
+                    return num;
+                });
+                const nextId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+                document.getElementById('newProductId').value = categoria.slice(0, -1) + nextId;
+                
+                // Focar no primeiro campo
+                document.getElementById('newProductName').focus();
+            }
+        }
+        
+        // ADICIONAR IMAGEM À GALERIA NO FORMULÁRIO
+        function addGalleryImage() {
+            const urlInput = document.getElementById('galleryImageUrl');
+            const url = urlInput.value.trim();
+            
+            if(!url) {
+                showNotification('Digite uma URL válida!', 'error');
+                return;
+            }
+            
+            // Validar URL
+            if(!url.startsWith('http')) {
+                showNotification('URL deve começar com http:// ou https://', 'error');
+                return;
+            }
+            
+            const preview = document.getElementById('galleryPreview');
+            const imageId = 'gallery-img-' + Date.now();
+            
+            const galleryItem = document.createElement('div');
+            galleryItem.className = 'gallery-item';
+            galleryItem.id = imageId;
+            
+            galleryItem.innerHTML = `
+                <img src="${url}" alt="Imagem da galeria" 
+                     onerror="this.src='https://via.placeholder.com/120x100?text=Erro+na+imagem'; 
+                              this.parentElement.querySelector('.gallery-item-remove').click()">
+                <button type="button" class="gallery-item-remove" onclick="removeGalleryImage('${imageId}')">×</button>
+            `;
+            
+            preview.appendChild(galleryItem);
+            urlInput.value = '';
+            showNotification('Imagem adicionada à galeria!', 'success');
+            urlInput.focus();
+        }
+        
+        // REMOVER IMAGEM DA GALERIA NO FORMULÁRIO
+        function removeGalleryImage(imageId) {
+            const element = document.getElementById(imageId);
+            if(element) {
+                element.remove();
+            }
+        }
+        
+        // ADICIONAR NOVO PRODUTO
+        function addNewProduct() {
+            const id = document.getElementById('newProductId').value.trim();
+            const nome = document.getElementById('newProductName').value.trim();
+            const categoria = document.getElementById('newProductCategory').value;
+            const preco = parseFloat(document.getElementById('newProductPrice').value);
+            const estoque = parseInt(document.getElementById('newProductStock').value);
+            const imagem = document.getElementById('newProductImage').value.trim();
+            const descricao = document.getElementById('newProductDescription').value.trim();
+            
+            // Coletar imagens da galeria
+            const galleryItems = document.querySelectorAll('#galleryPreview .gallery-item img');
+            const imagens = [];
+            galleryItems.forEach(item => {
+                if(item.src && !item.src.includes('placeholder.com')) {
+                    imagens.push(item.src);
+                }
+            });
+            
+            // Se não há imagem principal, usar a primeira da galeria
+            let imagemPrincipal = imagem;
+            if(!imagemPrincipal && imagens.length > 0) {
+                imagemPrincipal = imagens[0];
+            }
+            
+            // Validação
+            if(!id || !nome || !categoria || isNaN(preco) || isNaN(estoque) || !imagemPrincipal) {
+                showNotification('Preencha todos os campos obrigatórios! (ID, Nome, Categoria, Preço, Estoque, Imagem Principal)', 'error');
+                return;
+            }
+            
+            if(preco <= 0 || estoque < 0) {
+                showNotification('Preço deve ser maior que zero e estoque não pode ser negativo!', 'error');
+                return;
+            }
+            
+            // Verificar se ID já existe
+            if(produtos.some(p => p.id === id)) {
+                showNotification('Já existe um produto com este ID! Escolha outro.', 'error');
+                return;
+            }
+            
+            // Adicionar novo produto
+            const novoProduto = {
+                id,
+                nome,
+                categoria,
+                preco,
+                estoque,
+                imagem: imagemPrincipal,
+                imagens: imagens.filter(img => img !== imagemPrincipal), // Remove a imagem principal do array de galeria
+                descricao
+            };
+            
+            produtos.push(novoProduto);
+            
+            // Ordenar produtos
+            produtos.sort((a, b) => {
+                if(a.categoria !== b.categoria) {
+                    return a.categoria === 'camisas' ? -1 : 1;
+                }
+                const numA = parseInt(a.id.replace(/\D/g, '')) || 0;
+                const numB = parseInt(b.id.replace(/\D/g, '')) || 0;
+                return numA - numB;
+            });
+            
+            // Salvar e atualizar
+            saveToStorage();
+            renderProductsTable();
+            updateDashboard();
+            toggleAddProduct();
+            
+            showNotification(`Produto "${nome}" adicionado com sucesso!`, 'success');
+        }
+        
+        // ABRIR MODAL DE GALERIA
+        function openGalleryModal(productId) {
+            currentProductId = productId;
+            const produto = produtos.find(p => p.id === productId);
+            
+            if(!produto) {
+                showNotification('Produto não encontrado!', 'error');
+                return;
+            }
+            
+            // Inicializar galeria
+            galleryImages = produto.imagens ? [...produto.imagens] : [];
+            // Adicionar imagem principal no início
+            galleryImages.unshift(produto.imagem);
+            
+            // Atualizar UI
+            document.getElementById('modalProductName').textContent = `📸 Galeria - ${produto.nome}`;
+            currentGalleryIndex = 0;
+            
+            // Exibir primeira imagem
+            if(galleryImages.length > 0 && galleryImages[0]) {
+                document.getElementById('currentGalleryImage').src = galleryImages[0];
+            } else {
+                document.getElementById('currentGalleryImage').src = 'https://via.placeholder.com/600x400?text=Sem+imagens';
+            }
+            
+            // Atualizar miniaturas
+            updateGalleryThumbnails();
+            
+            // Mostrar modal
+            document.getElementById('galleryModal').style.display = 'flex';
+        }
+        
+        // ATUALIZAR MINIATURAS DA GALERIA
+        function updateGalleryThumbnails() {
+            const container = document.getElementById('galleryThumbnails');
             container.innerHTML = '';
             
-            defaultImages.forEach(img => {
-                addImageToContainer(img);
+            galleryImages.forEach((img, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = `thumbnail ${index === currentGalleryIndex ? 'active' : ''}`;
+                thumbnail.onclick = () => selectGalleryImage(index);
+                
+                thumbnail.innerHTML = `<img src="${img}" alt="Imagem ${index + 1}" 
+                                            onerror="this.src='https://via.placeholder.com/100x80?text=Erro'">`;
+                
+                container.appendChild(thumbnail);
             });
         }
         
-        // ATUALIZAR IMAGENS PADRÃO QUANDO MUDAR CATEGORIA
-        document.getElementById('newProductCategory').addEventListener('change', function() {
-            const categoria = this.value;
-            const nextId = getNextProductId(categoria);
-            document.getElementById('newProductId').value = categoria.slice(0, -1) + nextId;
+        // SELECIONAR IMAGEM DA GALERIA
+        function selectGalleryImage(index) {
+            currentGalleryIndex = index;
+            if(galleryImages[index]) {
+                document.getElementById('currentGalleryImage').src = galleryImages[index];
+            }
+            updateGalleryThumbnails();
+        }
+        
+        // ADICIONAR IMAGEM À GALERIA NO MODAL
+        function addImageToGallery() {
+            const url = prompt('Cole a URL da imagem:');
             
-            // Atualizar imagem principal padrão
-            const defaultImage = categoria === 'camisas' 
-                ? 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop'
-                : 'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop';
+            if(!url || !url.trim()) {
+                return;
+            }
             
-            document.getElementById('newProductImage').value = defaultImage;
+            if(!url.startsWith('http')) {
+                showNotification('URL deve começar com http:// ou https://', 'error');
+                return;
+            }
             
-            // Atualizar imagens adicionais padrão
-            addDefaultImages();
+            galleryImages.push(url.trim());
+            currentGalleryIndex = galleryImages.length - 1;
+            document.getElementById('currentGalleryImage').src = url.trim();
+            updateGalleryThumbnails();
+            
+            showNotification('Imagem adicionada à galeria!', 'success');
+        }
+        
+        // REMOVER IMAGEM ATUAL DA GALERIA
+        function removeCurrentImage() {
+            if(galleryImages.length <= 1) {
+                showNotification('Não é possível remover todas as imagens. O produto precisa ter pelo menos uma imagem.', 'error');
+                return;
+            }
+            
+            if(confirm('Tem certeza que deseja remover esta imagem da galeria?')) {
+                galleryImages.splice(currentGalleryIndex, 1);
+                
+                // Ajustar índice
+                if(currentGalleryIndex >= galleryImages.length) {
+                    currentGalleryIndex = galleryImages.length - 1;
+                }
+                
+                // Atualizar exibição
+                if(galleryImages.length > 0) {
+                    document.getElementById('currentGalleryImage').src = galleryImages[currentGalleryIndex];
+                } else {
+                    document.getElementById('currentGalleryImage').src = 'https://via.placeholder.com/600x400?text=Sem+imagens';
+                }
+                
+                updateGalleryThumbnails();
+                showNotification('Imagem removida da galeria!', 'success');
+            }
+        }
+        
+        // SALVAR ALTERAÇÕES DA GALERIA
+        function saveGalleryChanges() {
+            const produto = produtos.find(p => p.id === currentProductId);
+            
+            if(!produto) {
+                showNotification('Produto não encontrado!', 'error');
+                return;
+            }
+            
+            // Atualizar produto
+            if(galleryImages.length > 0) {
+                produto.imagem = galleryImages[0]; // Primeira imagem é a principal
+                produto.imagens = galleryImages.slice(1); // Restante é a galeria
+            } else {
+                // Se não há imagens, usar placeholder
+                produto.imagem = 'https://via.placeholder.com/300x300?text=Sem+imagem';
+                produto.imagens = [];
+            }
+            
+            // Salvar e atualizar
+            saveToStorage();
+            renderProductsTable();
+            closeGalleryModal();
+            
+            showNotification('Galeria atualizada com sucesso!', 'success');
+        }
+        
+        // FECHAR MODAL DE GALERIA
+        function closeGalleryModal() {
+            document.getElementById('galleryModal').style.display = 'none';
+            currentProductId = null;
+            galleryImages = [];
+            currentGalleryIndex = 0;
+        }
+        
+        // EXPORTAR PARA JS
+        function exportToJS() {
+            try {
+                // Separar por categoria
+                const camisas = produtos.filter(p => p.categoria === 'camisas');
+                const calcas = produtos.filter(p => p.categoria === 'calcas');
+                
+                // Gerar conteúdo JS
+                let jsContent = `// ============================================\n`;
+                jsContent += `// JORDANWEARSTORE - PRODUTOS COM GALERIAS\n`;
+                jsContent += `// Exportado em: ${new Date().toLocaleString('pt-BR')}\n`;
+                jsContent += `// Total: ${produtos.length} produtos (${camisas.length} camisas + ${calcas.length} calças)\n`;
+                jsContent += `// ============================================\n\n`;
+                jsContent += `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
+                
+                camisas.forEach((produto, index) => {
+                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+        
+                    // Adicionar array de imagens
+                    if(produto.imagens && produto.imagens.length > 0) {
+                        produto.imagens.forEach((img, imgIndex) => {
+                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                        });
+                        jsContent += `\n        ],`;
+                    } else {
+                        jsContent += `],`;
+                    }
+                    
+                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
+                });
+                
+                jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
+                
+                calcas.forEach((produto, index) => {
+                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+        
+                    // Adicionar array de imagens
+                    if(produto.imagens && produto.imagens.length > 0) {
+                        produto.imagens.forEach((img, imgIndex) => {
+                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                        });
+                        jsContent += `\n        ],`;
+                    } else {
+                        jsContent += `],`;
+                    }
+                    
+                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
+                });
+                
+                jsContent += `\n];`;
+                
+                // Criar arquivo para download
+                const blob = new Blob([jsContent], { type: 'application/javascript;charset=utf-8' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                const dateStr = new Date().toISOString().split('T')[0];
+                a.download = `jordanwearstore-produtos-${dateStr}.js`;
+                
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+                
+                showNotification(`Arquivo JS com ${produtos.length} produtos salvo com sucesso!`, 'success');
+                
+            } catch(error) {
+                console.error('Erro ao exportar:', error);
+                showNotification('Erro ao salvar arquivo!', 'error');
+            }
+        }
+        
+        // COPIAR CÓDIGO PARA ÁREA DE TRANSFERÊNCIA
+        function copyToClipboard() {
+            try {
+                // Gerar código JS
+                const camisas = produtos.filter(p => p.categoria === 'camisas');
+                const calcas = produtos.filter(p => p.categoria === 'calcas');
+                
+                let jsContent = `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
+                
+                camisas.forEach((produto, index) => {
+                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+        
+                    // Adicionar array de imagens
+                    if(produto.imagens && produto.imagens.length > 0) {
+                        produto.imagens.forEach((img, imgIndex) => {
+                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                        });
+                        jsContent += `\n        ],`;
+                    } else {
+                        jsContent += `],`;
+                    }
+                    
+                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
+                });
+                
+                jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
+                
+                calcas.forEach((produto, index) => {
+                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+        
+                    // Adicionar array de imagens
+                    if(produto.imagens && produto.imagens.length > 0) {
+                        produto.imagens.forEach((img, imgIndex) => {
+                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                        });
+                        jsContent += `\n        ],`;
+                    } else {
+                        jsContent += `],`;
+                    }
+                    
+                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
+                });
+                
+                jsContent += `\n];`;
+                
+                // Copiar para área de transferência
+                navigator.clipboard.writeText(jsContent)
+                    .then(() => {
+                        showNotification(`Código com ${produtos.length} produtos copiado para a área de transferência!`, 'success');
+                    })
+                    .catch(err => {
+                        // Método alternativo para navegadores antigos
+                        const textArea = document.createElement('textarea');
+                        textArea.value = jsContent;
+                        document.body.appendChild(textArea);
+                        textArea.select();
+                        document.execCommand('copy');
+                        document.body.removeChild(textArea);
+                        showNotification(`Código com ${produtos.length} produtos copiado!`, 'success');
+                    });
+                    
+            } catch(error) {
+                console.error('Erro ao copiar:', error);
+                showNotification('Erro ao copiar código!', 'error');
+            }
+        }
+        
+        // CARREGAR DE ARQUIVO
+        function loadFromFile() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.js,.json,.txt';
+            input.style.display = 'none';
+            
+            input.onchange = function(event) {
+                const file = event.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    try {
+                        let novosProdutos = [];
+                        const content = e.target.result;
+                        
+                        console.log('Tentando carregar arquivo:', file.name, 'tamanho:', content.length);
+                        
+                        // Verificar se é JS
+                        if (content.includes('const produtos = [')) {
+                            // Extrair array do JS usando uma abordagem mais segura
+                            const startIndex = content.indexOf('const produtos = [');
+                            const endIndex = content.lastIndexOf('];') + 2;
+                            
+                            if (startIndex !== -1 && endIndex !== -1) {
+                                const arrayStr = content.substring(startIndex + 'const produtos = '.length, endIndex);
+                                try {
+                                    novosProdutos = eval(`(${arrayStr})`);
+                                } catch(evalError) {
+                                    console.error('Erro ao avaliar array:', evalError);
+                                    // Tentar método alternativo
+                                    const match = content.match(/const produtos = (\[[\s\S]*?\]);/);
+                                    if (match && match[1]) {
+                                        const tempFunc = new Function('return ' + match[1]);
+                                        novosProdutos = tempFunc();
+                                    }
+                                }
+                            }
+                        } else {
+                            // Tentar como JSON puro
+                            novosProdutos = JSON.parse(content);
+                            // Se for objeto com propriedade produtos
+                            if (novosProdutos && novosProdutos.produtos) {
+                                novosProdutos = novosProdutos.produtos;
+                            }
+                        }
+                        
+                        if (!Array.isArray(novosProdutos) || novosProdutos.length === 0) {
+                            throw new Error('Formato inválido ou array vazio');
+                        }
+                        
+                        // Garantir que todos os produtos tenham array de imagens
+                        novosProdutos = novosProdutos.map(produto => {
+                            if (!produto.imagens) {
+                                produto.imagens = [];
+                            }
+                            // Garantir que a imagem principal não esteja no array de imagens
+                            if (produto.imagens.includes(produto.imagem)) {
+                                produto.imagens = produto.imagens.filter(img => img !== produto.imagem);
+                            }
+                            return produto;
+                        });
+                        
+                        // Atualizar produtos
+                        produtos = novosProdutos;
+                        saveToStorage();
+                        renderProductsTable();
+                        updateDashboard();
+                        
+                        showNotification(`${produtos.length} produtos carregados do arquivo!`, 'success');
+                        
+                    } catch(error) {
+                        console.error('Erro ao carregar arquivo:', error);
+                        showNotification('Erro: Formato de arquivo inválido! Use arquivos JS ou JSON exportados deste sistema.', 'error');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            document.body.appendChild(input);
+            input.click();
+            setTimeout(() => {
+                document.body.removeChild(input);
+            }, 1000);
+        }
+        
+        // FUNÇÕES AUXILIARES
+        function getStockStatus(estoque) {
+            if (estoque === 0) return 'out';
+            if (estoque <= 3) return 'low';
+            if (estoque <= 10) return 'medium';
+            return 'instock';
+        }
+        
+        function getStockClass(estoque) {
+            if (estoque === 0) return 'stock-out';
+            if (estoque <= 3) return 'stock-low';
+            if (estoque <= 10) return 'stock-medium';
+            return 'stock-high';
+        }
+        
+        function getStockText(estoque) {
+            if (estoque === 0) return 'ESGOTADO';
+            if (estoque <= 3) return 'BAIXO';
+            if (estoque <= 10) return 'MÉDIO';
+            return 'EM ESTOQUE';
+        }
+        
+        function showNotification(message, type = 'success') {
+            const el = document.getElementById('notification');
+            el.textContent = message;
+            el.className = 'notification ' + type;
+            el.style.display = 'flex';
+            
+            setTimeout(() => {
+                el.style.display = 'none';
+            }, 3000);
+        }
+        
+        // SALVAR AUTOMATICAMENTE AO SAIR
+        window.addEventListener('beforeunload', function() {
+            saveToStorage();
         });
         
-        function getNextProductId(categoria) {
-            const ids = produtos.filter(p => p.categoria === categoria).map(p => {
-                const num = p.id.replace(categoria.slice(0, -1), '');
-                return parseInt(num) || 0;
-            });
-            return ids.length > 0 ? Math.max(...ids) + 1 : 1;
-        }
-        
-        // [CONTINUE COM O RESTO DAS FUNÇÕES...]
+        // Tecla ESC fecha o modal
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeGalleryModal();
+            }
+        });
     </script>
 </body>
 </html>
