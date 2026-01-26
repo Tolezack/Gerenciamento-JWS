@@ -30,6 +30,7 @@
             padding: 25px 0;
             margin-bottom: 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
         }
         
         .header-content {
@@ -47,6 +48,7 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 10px;
+            flex-wrap: wrap;
         }
         
         .logo-icon {
@@ -87,6 +89,7 @@
         
         .action-btn.export:hover {
             background: #45a049;
+            transform: translateY(-2px);
         }
         
         .action-btn.add {
@@ -96,6 +99,7 @@
         
         .action-btn.add:hover {
             background: #0b7dda;
+            transform: translateY(-2px);
         }
         
         .action-btn.load {
@@ -105,6 +109,7 @@
         
         .action-btn.load:hover {
             background: #e68900;
+            transform: translateY(-2px);
         }
         
         .action-btn.copy {
@@ -114,6 +119,7 @@
         
         .action-btn.copy:hover {
             background: #7b1fa2;
+            transform: translateY(-2px);
         }
         
         .action-btn.reset {
@@ -123,6 +129,7 @@
         
         .action-btn.reset:hover {
             background: #d32f2f;
+            transform: translateY(-2px);
         }
         
         /* DASHBOARD */
@@ -138,6 +145,11 @@
             border-radius: 12px;
             padding: 25px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
         }
         
         .stat-card h3 {
@@ -161,6 +173,12 @@
             margin-bottom: 30px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.08);
             display: none;
+            animation: slideDown 0.3s ease;
+        }
+        
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
         
         .form-grid {
@@ -198,6 +216,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: #2196F3;
+            box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
         }
         
         .form-group textarea {
@@ -247,6 +266,11 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            transition: background 0.3s;
+        }
+        
+        .gallery-add-btn:hover {
+            background: #45a049;
         }
         
         .gallery-preview {
@@ -261,6 +285,11 @@
             border-radius: 8px;
             overflow: hidden;
             border: 2px solid #eee;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
         }
         
         .gallery-item img {
@@ -285,6 +314,12 @@
             align-items: center;
             justify-content: center;
             font-size: 12px;
+            opacity: 0.9;
+            transition: opacity 0.3s;
+        }
+        
+        .gallery-item-remove:hover {
+            opacity: 1;
         }
         
         .form-actions {
@@ -301,6 +336,7 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 15px;
+            transition: all 0.3s;
         }
         
         .form-btn.save {
@@ -308,9 +344,18 @@
             color: white;
         }
         
+        .form-btn.save:hover {
+            background: #45a049;
+        }
+        
         .form-btn.cancel {
             background: #f5f5f5;
             color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .form-btn.cancel:hover {
+            background: #e0e0e0;
         }
         
         /* TABELA DE PRODUTOS */
@@ -326,11 +371,15 @@
         table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 800px;
         }
         
         thead {
             background: #000;
             color: white;
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
         
         th {
@@ -338,6 +387,7 @@
             text-align: left;
             font-weight: 600;
             font-size: 14px;
+            user-select: none;
         }
         
         tbody tr {
@@ -359,6 +409,7 @@
             height: 50px;
             object-fit: cover;
             border-radius: 6px;
+            border: 1px solid #eee;
         }
         
         .product-name {
@@ -390,6 +441,40 @@
             font-size: 16px;
         }
         
+        .stock-input {
+            width: 70px;
+            padding: 5px 10px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .stock-input:focus {
+            border-color: #2196F3;
+            outline: none;
+        }
+        
+        .desc-cell {
+            max-width: 200px;
+        }
+        
+        .desc-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 60px;
+        }
+        
+        .desc-input:focus {
+            border-color: #2196F3;
+            outline: none;
+        }
+        
         .table-actions {
             display: flex;
             gap: 5px;
@@ -412,9 +497,35 @@
             color: white;
         }
         
+        .table-btn.edit:hover {
+            background: #d68910;
+        }
+        
+        .table-btn.save {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .table-btn.save:hover {
+            background: #219653;
+        }
+        
+        .table-btn.cancel {
+            background: #95a5a6;
+            color: white;
+        }
+        
+        .table-btn.cancel:hover {
+            background: #7f8c8d;
+        }
+        
         .table-btn.gallery {
             background: #3498db;
             color: white;
+        }
+        
+        .table-btn.gallery:hover {
+            background: #2980b9;
         }
         
         .table-btn.plus {
@@ -422,14 +533,26 @@
             color: white;
         }
         
+        .table-btn.plus:hover {
+            background: #219653;
+        }
+        
         .table-btn.minus {
             background: #e74c3c;
             color: white;
         }
         
+        .table-btn.minus:hover {
+            background: #c0392b;
+        }
+        
         .table-btn.delete {
-            background: #95a5a6;
+            background: #7f8c8d;
             color: white;
+        }
+        
+        .table-btn.delete:hover {
+            background: #6c7b7d;
         }
         
         /* MODAL DE GALERIA */
@@ -445,6 +568,7 @@
             justify-content: center;
             z-index: 1002;
             padding: 20px;
+            backdrop-filter: blur(5px);
         }
         
         .modal-content {
@@ -456,6 +580,12 @@
             overflow: hidden;
             display: flex;
             flex-direction: column;
+            animation: modalAppear 0.3s ease;
+        }
+        
+        @keyframes modalAppear {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
         
         .modal-header {
@@ -486,6 +616,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: transform 0.3s;
+        }
+        
+        .modal-close:hover {
+            transform: rotate(90deg);
         }
         
         .modal-body {
@@ -521,8 +656,13 @@
             transition: all 0.3s;
         }
         
+        .thumbnail:hover {
+            transform: translateY(-3px);
+        }
+        
         .thumbnail.active {
             border-color: #2196F3;
+            box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
         }
         
         .thumbnail img {
@@ -545,6 +685,11 @@
             cursor: pointer;
             font-weight: 600;
             font-size: 14px;
+            transition: all 0.3s;
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-2px);
         }
         
         .modal-btn.primary {
@@ -552,14 +697,27 @@
             color: white;
         }
         
+        .modal-btn.primary:hover {
+            background: #0b7dda;
+        }
+        
         .modal-btn.secondary {
             background: #f5f5f5;
             color: #333;
+            border: 1px solid #ddd;
+        }
+        
+        .modal-btn.secondary:hover {
+            background: #e0e0e0;
         }
         
         .modal-btn.danger {
             background: #e74c3c;
             color: white;
+        }
+        
+        .modal-btn.danger:hover {
+            background: #c0392b;
         }
         
         .stock-indicator {
@@ -601,6 +759,7 @@
             align-items: center;
             gap: 10px;
             animation: slideIn 0.3s ease;
+            max-width: 400px;
         }
         
         @keyframes slideIn {
@@ -648,6 +807,108 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* LOADING SPINNER */
+        .loading {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* BADGE DE GALERIA */
+        .gallery-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            background: #e3f2fd;
+            color: #1976d2;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+        
+        /* SORT HEADERS */
+        .sortable {
+            cursor: pointer;
+            position: relative;
+            padding-right: 20px;
+        }
+        
+        .sortable::after {
+            content: '↕';
+            position: absolute;
+            right: 8px;
+            opacity: 0.5;
+        }
+        
+        .sortable.asc::after {
+            content: '↑';
+            opacity: 1;
+        }
+        
+        .sortable.desc::after {
+            content: '↓';
+            opacity: 1;
+        }
+        
+        /* EMPTY STATE */
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+        }
+        
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        /* AUTO-SAVE INDICATOR */
+        .auto-save {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            animation: fadeIn 0.3s ease;
+            z-index: 1000;
         }
         
         @media (max-width: 768px) {
@@ -686,6 +947,18 @@
             
             .modal-btn {
                 width: 100%;
+            }
+            
+            .stock-input {
+                width: 60px;
+            }
+            
+            .desc-cell {
+                max-width: 150px;
+            }
+            
+            .logo h1 {
+                font-size: 22px;
             }
         }
     </style>
@@ -728,7 +1001,7 @@
         </div>
         
         <!-- MENSAGEM DE PRODUTOS CARREGADOS -->
-        <div class="loaded-info" id="loadedInfo" style="display: none;">
+        <div class="loaded-info" id="loadedInfo">
             <span>✅</span>
             <div>
                 <strong>36 produtos carregados!</strong>
@@ -744,6 +1017,7 @@
                 <div class="form-group">
                     <label for="newProductId">ID do Produto *</label>
                     <input type="text" id="newProductId" placeholder="Ex: camisa19 ou calca19">
+                    <small style="color: #666; font-size: 12px;">ID único e não pode conter espaços</small>
                 </div>
                 
                 <div class="form-group">
@@ -753,7 +1027,7 @@
                 
                 <div class="form-group">
                     <label for="newProductCategory">Categoria *</label>
-                    <select id="newProductCategory">
+                    <select id="newProductCategory" onchange="generateProductId()">
                         <option value="camisas">Camisa</option>
                         <option value="calcas">Calça</option>
                     </select>
@@ -783,7 +1057,9 @@
                 </p>
                 
                 <div class="gallery-input-container">
-                    <input type="text" id="galleryImageUrl" class="gallery-input" placeholder="Cole aqui a URL de uma imagem">
+                    <input type="text" id="galleryImageUrl" class="gallery-input" 
+                           placeholder="Cole aqui a URL de uma imagem" 
+                           onkeypress="if(event.key === 'Enter') addGalleryImage()">
                     <button type="button" class="gallery-add-btn" onclick="addGalleryImage()">
                         <span>+</span> Adicionar
                     </button>
@@ -830,11 +1106,12 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Produto</th>
-                        <th>Categoria</th>
-                        <th>Preço</th>
-                        <th>Estoque</th>
-                        <th>Status</th>
+                        <th onclick="sortTable('nome')" class="sortable">Produto</th>
+                        <th onclick="sortTable('categoria')" class="sortable">Categoria</th>
+                        <th onclick="sortTable('preco')" class="sortable">Preço</th>
+                        <th onclick="sortTable('estoque')" class="sortable">Estoque</th>
+                        <th>Descrição</th>
+                        <th onclick="sortTable('estoque')" class="sortable">Status</th>
                         <th>Ações</th>
                     </tr>
                 </thead>
@@ -850,9 +1127,9 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px; margin-top: 15px; text-align: left;">
                 <div>
                     <p><strong>1. Editar Produtos</strong></p>
-                    <p>• Clique em "Editar" para alterar estoque</p>
-                    <p>• Use "+" e "-" para ajustar quantidade</p>
-                    <p>• Clique em "Galeria" para gerenciar imagens</p>
+                    <p>• Clique em "Editar" para alterar estoque e descrição</p>
+                    <p>• Use "+" e "-" para ajustar quantidade rapidamente</p>
+                    <p>• Clique em "Salvar" para confirmar alterações</p>
                 </div>
                 <div>
                     <p><strong>2. Galerias de Imagens</strong></p>
@@ -879,7 +1156,8 @@
             </div>
             <div class="modal-body">
                 <div class="current-image-container">
-                    <img id="currentGalleryImage" src="" alt="Imagem atual" class="current-image" onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+não+carregada'">
+                    <img id="currentGalleryImage" src="" alt="Imagem atual" class="current-image" 
+                         onerror="this.src='https://via.placeholder.com/600x400?text=Imagem+não+carregada'">
                 </div>
                 
                 <div id="galleryThumbnails" class="gallery-thumbnails">
@@ -901,8 +1179,18 @@
         </div>
     </div>
     
+    <!-- LOADING SPINNER -->
+    <div class="loading" id="loadingSpinner">
+        <div class="spinner"></div>
+    </div>
+    
     <!-- NOTIFICAÇÃO -->
     <div class="notification" id="notification"></div>
+    
+    <!-- AUTO-SAVE INDICATOR -->
+    <div class="auto-save" id="autoSaveIndicator">
+        <span>💾</span> Alterações salvas
+    </div>
 
     <script>
         // ============================================
@@ -1429,6 +1717,13 @@
         let galleryImages = [];
         let currentGalleryIndex = 0;
         
+        // Variáveis para controle de edição
+        let editingProductId = null;
+        
+        // Controle de ordenação
+        let sortField = 'nome';
+        let sortDirection = 'asc';
+        
         // ============================================
         // FUNÇÕES PRINCIPAIS
         // ============================================
@@ -1440,16 +1735,23 @@
             updateDashboard();
             renderProductsTable();
             
-            // Mostrar mensagem de produtos carregados
-            document.getElementById('loadedInfo').style.display = 'flex';
+            // Focar na tabela ao carregar
+            setTimeout(() => {
+                const tbody = document.getElementById('productsTableBody');
+                if (tbody.children.length > 0) {
+                    tbody.children[0].scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            }, 500);
         });
         
         // SALVAR NO LOCALSTORAGE
         function saveToStorage() {
             try {
                 localStorage.setItem('jordanwearstore_produtos', JSON.stringify(produtos));
+                showAutoSaveIndicator();
             } catch(error) {
                 console.error('Erro ao salvar:', error);
+                showNotification('Erro ao salvar no armazenamento local', 'error');
             }
         }
         
@@ -1458,7 +1760,16 @@
             try {
                 const saved = localStorage.getItem('jordanwearstore_produtos');
                 if(saved) {
-                    produtos = JSON.parse(saved);
+                    const parsed = JSON.parse(saved);
+                    // Validar e garantir que todos os produtos tenham array de imagens
+                    produtos = parsed.map(produto => {
+                        if (!produto.imagens) produto.imagens = [];
+                        // Remover imagem principal do array de imagens se estiver duplicada
+                        if (produto.imagens.includes(produto.imagem)) {
+                            produto.imagens = produto.imagens.filter(img => img !== produto.imagem);
+                        }
+                        return produto;
+                    });
                     showNotification('Dados carregados do armazenamento local', 'info');
                 }
             } catch(error) {
@@ -1469,16 +1780,60 @@
         // RESETAR PARA DADOS PADRÃO
         function resetToDefault() {
             if(confirm('Tem certeza que deseja resetar todos os produtos para os valores padrão? Isso irá substituir todas as alterações.')) {
-                // Recarregar os dados padrão (os 36 produtos definidos acima)
-                produtos = [...produtos]; // Isso recria o array com os dados iniciais
+                showLoading(true);
                 
-                // Se você quiser realmente resetar para os dados originais exatos,
-                // precisaríamos recarregar a página. Mas vamos apenas usar o array existente.
-                
-                saveToStorage();
-                renderProductsTable();
-                updateDashboard();
-                showNotification('Produtos resetados para valores padrão!', 'success');
+                setTimeout(() => {
+                    // Restaurar dados originais (cópia profunda)
+                    const originalData = [
+                        // Camisas
+                        {id:'camisa1',nome:'Camisa Jordan Air Classic',categoria:'camisas',preco:299.90,estoque:25,imagem:'https://images.unsplash.com/photo-1520975922284-8b456906c813?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1520975922284-8b456906c813?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1523381140794-a1eef18a37c1?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'],descricao:'Clássica camisa Jordan com tecnologia Dry-Fit premium. Material: 100% poliéster tech. Disponível em todas as cores.'},
+                        {id:'camisa2',nome:'Camisa Jordan Retro 23',categoria:'camisas',preco:289.90,estoque:18,imagem:'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&h=400&fit=crop'],descricao:'Design retrô inspirado nos anos 90 com logo bordado. Detalhes em contraste.'},
+                        {id:'camisa3',nome:'Camisa Jordan Performance',categoria:'camisas',preco:329.90,estoque:12,imagem:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'],descricao:'Tecnologia de alta performance para atividades esportivas. Secagem rápida.'},
+                        {id:'camisa4',nome:'Camisa Jordan Signature',categoria:'camisas',preco:349.90,estoque:8,imagem:'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Edição especial com assinatura bordada e detalhes premium em acabamento sofisticado.'},
+                        {id:'camisa5',nome:'Camisa Jordan Street Style',categoria:'camisas',preco:269.90,estoque:15,imagem:'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop'],descricao:'Estilo urbano com design moderno e conforto máximo para o dia a dia.'},
+                        {id:'camisa6',nome:'Camisa Jordan Essentials',categoria:'camisas',preco:199.90,estoque:30,imagem:'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'],descricao:'Básica essencial para o dia a dia, super confortável e versátil.'},
+                        {id:'camisa7',nome:'Camisa Jordan Pro Elite',categoria:'camisas',preco:379.90,estoque:5,imagem:'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Linha profissional com materiais de alta qualidade e durabilidade.'},
+                        {id:'camisa8',nome:'Camisa Jordan Night Game',categoria:'camisas',preco:319.90,estoque:22,imagem:'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Design elegante para jogos noturnos e eventos especiais.'},
+                        {id:'camisa9',nome:'Camisa Jordan Summer Edition',categoria:'camisas',preco:239.90,estoque:14,imagem:'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Edição verão com tecido leve e respirabilidade máxima.'},
+                        {id:'camisa10',nome:'Camisa Jordan Limited Edition',categoria:'camisas',preco:459.90,estoque:3,imagem:'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Edição limitada numerada, apenas 100 unidades produzidas.'},
+                        {id:'camisa11',nome:'Camisa Jordan Air Max Pro',categoria:'camisas',preco:329.90,estoque:20,imagem:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'],descricao:'Tecnologia Air Max para máximo conforto e estilo.'},
+                        {id:'camisa12',nome:'Camisa Jordan Urban Flex',categoria:'camisas',preco:279.90,estoque:16,imagem:'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Flexibilidade urbana com design contemporâneo.'},
+                        {id:'camisa13',nome:'Camisa Jordan Court Vision',categoria:'camisas',preco:299.90,estoque:11,imagem:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Inspirada nas quadras com estilo esportivo moderno.'},
+                        {id:'camisa14',nome:'Camisa Jordan Heritage',categoria:'camisas',preco:349.90,estoque:7,imagem:'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Herança Jordan com detalhes clássicos e modernos.'},
+                        {id:'camisa15',nome:'Camisa Jordan Bounce',categoria:'camisas',preco:269.90,estoque:19,imagem:'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Tecnologia Bounce para liberdade de movimento.'},
+                        {id:'camisa16',nome:'Camisa Jordan React',categoria:'camisas',preco:389.90,estoque:9,imagem:'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Conforto React com resposta energética premium.'},
+                        {id:'camisa17',nome:'Camisa Jordan Zoom',categoria:'camisas',preco:319.90,estoque:13,imagem:'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Tecnologia Zoom para velocidade e agilidade.'},
+                        {id:'camisa18',nome:'Camisa Jordan FlyEase',categoria:'camisas',preco:279.90,estoque:21,imagem:'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Sistema FlyEase para fácil uso e máximo conforto.'},
+                        // Calças
+                        {id:'calca1',nome:'Calça Jeans Jordan Classic',categoria:'calcas',preco:389.90,estoque:20,imagem:'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Jeans clássico com elastano para máximo conforto no dia a dia.'},
+                        {id:'calca2',nome:'Calça Cargo Jordan Utility',categoria:'calcas',preco:329.90,estoque:15,imagem:'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Cargo prática com múltiplos bolsos e design utilitário.'},
+                        {id:'calca3',nome:'Calça Moletom Jordan Comfort',categoria:'calcas',preco:279.90,estoque:25,imagem:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Moletom ultra confortável para relaxar em estilo.'},
+                        {id:'calca4',nome:'Calça Chino Jordan Executive',categoria:'calcas',preco:349.90,estoque:18,imagem:'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Chino executivo para ocasiões formais e casuais.'},
+                        {id:'calca5',nome:'Calça Jogger Jordan Sport',categoria:'calcas',preco:299.90,estoque:22,imagem:'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Jogger esportiva com ajuste perfeito e mobilidade.'},
+                        {id:'calca6',nome:'Calça Social Jordan Premium',categoria:'calcas',preco:429.90,estoque:10,imagem:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Social premium com corte italiano e tecido de alta qualidade.'},
+                        {id:'calca7',nome:'Calça Tactel Jordan Performance',categoria:'calcas',preco:319.90,estoque:12,imagem:'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Tactel de performance para atividades físicas intensas.'},
+                        {id:'calca8',nome:'Calça Wide Leg Jordan',categoria:'calcas',preco:369.90,estoque:8,imagem:'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Wide leg fashion com corte moderno e tendência streetwear.'},
+                        {id:'calca9',nome:'Calça Linho Jordan Summer',categoria:'calcas',preco:289.90,estoque:16,imagem:'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Linho leve e respirável para os dias mais quentes.'},
+                        {id:'calca10',nome:'Calça Couro Jordan Urban',categoria:'calcas',preco:599.90,estoque:4,imagem:'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Couro legítimo com design urbano e estilo ousado.'},
+                        {id:'calca11',nome:'Calça Sarja Jordan Slim',categoria:'calcas',preco:339.90,estoque:17,imagem:'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Sarja slim fit com corte moderno e ajuste perfeito.'},
+                        {id:'calca12',nome:'Calça Tactel Jordan Active',categoria:'calcas',preco:299.90,estoque:14,imagem:'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Tactel para atividades físicas com máxima liberdade.'},
+                        {id:'calca13',nome:'Calça Moletom Jordan Tech',categoria:'calcas',preco:319.90,estoque:11,imagem:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Moletom tech fleece com tecnologia térmica avançada.'},
+                        {id:'calca14',nome:'Calça Jeans Jordan Skinny',categoria:'calcas',preco:379.90,estoque:9,imagem:'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Jeans skinny fit com elastano e corte moderno.'},
+                        {id:'calca15',nome:'Calça Cargo Jordan Military',categoria:'calcas',preco:349.90,estoque:13,imagem:'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Cargo estilo militar com múltiplos bolsos funcionais.'},
+                        {id:'calca16',nome:'Calça Sarja Jordan Regular',categoria:'calcas',preco:289.90,estoque:19,imagem:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Sarja regular fit para uso casual e confortável.'},
+                        {id:'calca17',nome:'Calça Tactel Jordan Pro',categoria:'calcas',preco:359.90,estoque:7,imagem:'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Tactel profissional para alto rendimento esportivo.'},
+                        {id:'calca18',nome:'Calça Jeans Jordan Relaxed',categoria:'calcas',preco:329.90,estoque:15,imagem:'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Jeans relaxed fit para máximo conforto no dia a dia.'}
+                    ];
+                    
+                    produtos = originalData;
+                    saveToStorage();
+                    editingProductId = null;
+                    renderProductsTable();
+                    updateDashboard();
+                    
+                    showLoading(false);
+                    showNotification('Produtos resetados para valores padrão!', 'success');
+                }, 1000);
             }
         }
         
@@ -1500,103 +1855,204 @@
             document.getElementById('totalValue').textContent = `R$ ${totalValue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
         }
         
+        // ORDENAR TABELA
+        function sortTable(field) {
+            // Alternar direção se clicar no mesmo campo
+            if (sortField === field) {
+                sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
+            } else {
+                sortField = field;
+                sortDirection = 'asc';
+            }
+            
+            // Atualizar indicadores visuais
+            document.querySelectorAll('.sortable').forEach(th => {
+                th.classList.remove('asc', 'desc');
+                if (th.getAttribute('onclick')?.includes(`sortTable('${field}')`)) {
+                    th.classList.add(sortDirection);
+                }
+            });
+            
+            renderProductsTable();
+        }
+        
         // RENDERIZAR TABELA
         function renderProductsTable() {
             const tbody = document.getElementById('productsTableBody');
+            
+            // Ordenar produtos
+            const produtosOrdenados = [...produtos].sort((a, b) => {
+                let valA, valB;
+                
+                switch(sortField) {
+                    case 'nome':
+                        valA = a.nome.toLowerCase();
+                        valB = b.nome.toLowerCase();
+                        break;
+                    case 'categoria':
+                        valA = a.categoria;
+                        valB = b.categoria;
+                        break;
+                    case 'preco':
+                        valA = a.preco;
+                        valB = b.preco;
+                        break;
+                    case 'estoque':
+                        valA = a.estoque;
+                        valB = b.estoque;
+                        break;
+                    default:
+                        valA = a.nome.toLowerCase();
+                        valB = b.nome.toLowerCase();
+                }
+                
+                if (sortDirection === 'asc') {
+                    return valA > valB ? 1 : valA < valB ? -1 : 0;
+                } else {
+                    return valA < valB ? 1 : valA > valB ? -1 : 0;
+                }
+            });
+            
             let html = '';
             
-            // Ordenar: camisas primeiro, depois calças
-            const produtosOrdenados = [...produtos].sort((a, b) => {
-                if(a.categoria !== b.categoria) {
-                    return a.categoria === 'camisas' ? -1 : 1;
-                }
-                const numA = parseInt(a.id.replace(/\D/g, '')) || 0;
-                const numB = parseInt(b.id.replace(/\D/g, '')) || 0;
-                return numA - numB;
-            });
-            
-            produtosOrdenados.forEach(produto => {
-                const status = getStockStatus(produto.estoque);
-                const statusClass = getStockClass(produto.estoque);
-                const statusText = getStockText(produto.estoque);
-                const hasGallery = produto.imagens && produto.imagens.length > 0;
-                const totalImages = hasGallery ? produto.imagens.length + 1 : 1; // +1 para imagem principal
-                
-                html += `
-                <tr>
-                    <td>
-                        <div style="display: flex; align-items: center; gap: 10px;">
-                            <img src="${produto.imagem}" alt="${produto.nome}" class="product-img" 
-                                 onerror="this.src='https://via.placeholder.com/50x50?text=Sem+imagem'">
-                            <div>
-                                <div class="product-name">${produto.nome}</div>
-                                <div style="font-size: 12px; color: #777;">ID: ${produto.id}</div>
-                                <div style="font-size: 11px; color: ${hasGallery ? '#3498db' : '#95a5a6'};">
-                                    📸 ${totalImages} imagem${totalImages !== 1 ? 'ns' : ''}
+            if (produtosOrdenados.length === 0) {
+                html = `<tr><td colspan="7" class="empty-state">
+                    <h3>Nenhum produto encontrado</h3>
+                    <p>Clique em "Adicionar Produto" para começar</p>
+                </td></tr>`;
+            } else {
+                produtosOrdenados.forEach(produto => {
+                    const status = getStockStatus(produto.estoque);
+                    const statusClass = getStockClass(produto.estoque);
+                    const statusText = getStockText(produto.estoque);
+                    const hasGallery = produto.imagens && produto.imagens.length > 0;
+                    const totalImages = hasGallery ? produto.imagens.length + 1 : 1;
+                    
+                    // Verificar se este produto está sendo editado
+                    const isEditing = editingProductId === produto.id;
+                    
+                    html += `
+                    <tr>
+                        <td>
+                            <div style="display: flex; align-items: center; gap: 10px;">
+                                <img src="${produto.imagem}" alt="${produto.nome}" class="product-img" 
+                                     onerror="this.src='https://via.placeholder.com/50x50?text=Sem+imagem'">
+                                <div>
+                                    <div class="product-name">${produto.nome}</div>
+                                    <div style="font-size: 12px; color: #777;">ID: ${produto.id}</div>
+                                    <div class="gallery-badge">
+                                        📸 ${totalImages} imagem${totalImages !== 1 ? 'ns' : ''}
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </td>
-                    <td>
-                        <span class="product-category category-${produto.categoria}">
-                            ${produto.categoria === 'camisas' ? 'Camisa' : 'Calça'}
-                        </span>
-                    </td>
-                    <td class="stock-cell">R$ ${produto.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
-                    <td class="stock-cell">
-                        <div style="display: flex; align-items: center; gap: 5px;">
-                            <span class="stock-indicator ${statusClass}"></span>
-                            ${produto.estoque}
-                        </div>
-                    </td>
-                    <td>
-                        <span class="status-badge status-${status}">${statusText}</span>
-                    </td>
-                    <td>
-                        <div class="table-actions">
-                            <button class="table-btn edit" onclick="editProduct('${produto.id}')" title="Editar estoque">
-                                ✏️ Editar
-                            </button>
-                            <button class="table-btn gallery" onclick="openGalleryModal('${produto.id}')" title="Gerenciar galeria">
-                                📸 Galeria
-                            </button>
-                            <button class="table-btn plus" onclick="updateStock('${produto.id}', 1)" title="Aumentar estoque">
-                                ➕
-                            </button>
-                            <button class="table-btn minus" onclick="updateStock('${produto.id}', -1)" title="Reduzir estoque">
-                                ➖
-                            </button>
-                            <button class="table-btn delete" onclick="deleteProduct('${produto.id}')" title="Excluir produto">
-                                🗑️
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-                `;
-            });
+                        </td>
+                        <td>
+                            <span class="product-category category-${produto.categoria}">
+                                ${produto.categoria === 'camisas' ? 'Camisa' : 'Calça'}
+                            </span>
+                        </td>
+                        <td class="stock-cell">R$ ${produto.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
+                        <td class="stock-cell">
+                            ${isEditing ? 
+                                `<input type="number" id="editStock-${produto.id}" class="stock-input" 
+                                        value="${produto.estoque}" min="0" onkeypress="return event.charCode >= 48 && event.charCode <= 57">` :
+                                `<div style="display: flex; align-items: center; gap: 5px;">
+                                    <span class="stock-indicator ${statusClass}"></span>
+                                    ${produto.estoque}
+                                </div>`
+                            }
+                        </td>
+                        <td class="desc-cell">
+                            ${isEditing ? 
+                                `<textarea id="editDesc-${produto.id}" class="desc-input">${produto.descricao || ''}</textarea>` :
+                                `<span title="${produto.descricao || 'Sem descrição'}">
+                                    ${(produto.descricao || 'Sem descrição').substring(0, 50)}${(produto.descricao || '').length > 50 ? '...' : ''}
+                                </span>`
+                            }
+                        </td>
+                        <td>
+                            <span class="status-badge status-${status}">${statusText}</span>
+                        </td>
+                        <td>
+                            <div class="table-actions">
+                                ${isEditing ? 
+                                    `
+                                    <button class="table-btn save" onclick="saveProductEdit('${produto.id}')" title="Salvar alterações">
+                                        💾 Salvar
+                                    </button>
+                                    <button class="table-btn cancel" onclick="cancelProductEdit('${produto.id}')" title="Cancelar edição">
+                                        ❌ Cancelar
+                                    </button>
+                                    ` :
+                                    `
+                                    <button class="table-btn edit" onclick="startProductEdit('${produto.id}')" title="Editar produto">
+                                        ✏️ Editar
+                                    </button>
+                                    <button class="table-btn gallery" onclick="openGalleryModal('${produto.id}')" title="Gerenciar galeria">
+                                        📸 Galeria
+                                    </button>
+                                    <button class="table-btn plus" onclick="updateStock('${produto.id}', 1)" title="Aumentar estoque">
+                                        ➕
+                                    </button>
+                                    <button class="table-btn minus" onclick="updateStock('${produto.id}', -1)" title="Reduzir estoque">
+                                        ➖
+                                    </button>
+                                    <button class="table-btn delete" onclick="deleteProduct('${produto.id}')" title="Excluir produto">
+                                        🗑️
+                                    </button>
+                                    `
+                                }
+                            </div>
+                        </td>
+                    </tr>
+                    `;
+                });
+            }
             
             tbody.innerHTML = html;
         }
         
-        // EDITAR PRODUTO
-        function editProduct(productId) {
+        // INICIAR EDIÇÃO DE PRODUTO
+        function startProductEdit(productId) {
+            editingProductId = productId;
+            renderProductsTable();
+            showNotification('Edite a descrição e o estoque, depois clique em "Salvar"', 'info');
+        }
+        
+        // SALVAR EDIÇÃO DE PRODUTO
+        function saveProductEdit(productId) {
             const produto = produtos.find(p => p.id === productId);
             if(!produto) return;
             
-            const novoEstoque = prompt(`Digite o novo estoque para "${produto.nome}":`, produto.estoque);
-            if(novoEstoque === null) return;
+            // Obter novos valores
+            const novoEstoque = document.getElementById(`editStock-${productId}`).value;
+            const novaDescricao = document.getElementById(`editDesc-${productId}`).value.trim();
             
+            // Validar estoque
             const estoqueNum = parseInt(novoEstoque);
             if(isNaN(estoqueNum) || estoqueNum < 0) {
-                showNotification('Valor inválido! Digite um número maior ou igual a 0.', 'error');
+                showNotification('Estoque inválido! Digite um número maior ou igual a 0.', 'error');
                 return;
             }
             
+            // Atualizar produto
             produto.estoque = estoqueNum;
+            produto.descricao = novaDescricao;
+            
+            // Salvar e atualizar
             saveToStorage();
+            editingProductId = null;
             renderProductsTable();
             updateDashboard();
-            showNotification(`Estoque de "${produto.nome}" atualizado para ${estoqueNum}`, 'success');
+            
+            showNotification(`Produto "${produto.nome}" atualizado com sucesso!`, 'success');
+        }
+        
+        // CANCELAR EDIÇÃO DE PRODUTO
+        function cancelProductEdit(productId) {
+            editingProductId = null;
+            renderProductsTable();
+            showNotification('Edição cancelada', 'info');
         }
         
         // EXCLUIR PRODUTO
@@ -1609,6 +2065,7 @@
                 if(index !== -1) {
                     produtos.splice(index, 1);
                     saveToStorage();
+                    editingProductId = null;
                     renderProductsTable();
                     updateDashboard();
                     showNotification(`Produto "${produto.nome}" excluído com sucesso!`, 'success');
@@ -1616,7 +2073,7 @@
             }
         }
         
-        // ATUALIZAR ESTOQUE
+        // ATUALIZAR ESTOQUE RAPIDAMENTE
         function updateStock(productId, change) {
             const produto = produtos.find(p => p.id === productId);
             if(!produto) return;
@@ -1635,6 +2092,22 @@
             
             const action = change > 0 ? 'aumentado' : 'reduzido';
             showNotification(`Estoque ${action} para ${newStock} - ${produto.nome}`, 'success');
+        }
+        
+        // GERAR ID DO PRODUTO AUTOMATICAMENTE
+        function generateProductId() {
+            const categoria = document.getElementById('newProductCategory').value;
+            const categoriaSingular = categoria.slice(0, -1); // Remove 's' final
+            const ids = produtos
+                .filter(p => p.categoria === categoria)
+                .map(p => {
+                    const num = parseInt(p.id.replace(categoriaSingular, '')) || 0;
+                    return num;
+                });
+            
+            const nextId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
+            document.getElementById('newProductId').value = categoriaSingular + nextId;
+            document.getElementById('newProductName').focus();
         }
         
         // ADICIONAR NOVO PRODUTO
@@ -1657,13 +2130,7 @@
                 document.getElementById('galleryPreview').innerHTML = '';
                 
                 // Gerar ID automático
-                const categoria = document.getElementById('newProductCategory').value;
-                const ids = produtos.filter(p => p.categoria === categoria).map(p => {
-                    const num = parseInt(p.id.replace(categoria.slice(0, -1), '')) || 0;
-                    return num;
-                });
-                const nextId = ids.length > 0 ? Math.max(...ids) + 1 : 1;
-                document.getElementById('newProductId').value = categoria.slice(0, -1) + nextId;
+                generateProductId();
                 
                 // Focar no primeiro campo
                 document.getElementById('newProductName').focus();
@@ -1737,6 +2204,8 @@
             let imagemPrincipal = imagem;
             if(!imagemPrincipal && imagens.length > 0) {
                 imagemPrincipal = imagens[0];
+                // Remover a imagem principal do array de imagens
+                imagens.shift();
             }
             
             // Validação
@@ -1747,6 +2216,12 @@
             
             if(preco <= 0 || estoque < 0) {
                 showNotification('Preço deve ser maior que zero e estoque não pode ser negativo!', 'error');
+                return;
+            }
+            
+            // Validar formato do ID
+            if(id.includes(' ')) {
+                showNotification('ID não pode conter espaços!', 'error');
                 return;
             }
             
@@ -1764,7 +2239,7 @@
                 preco,
                 estoque,
                 imagem: imagemPrincipal,
-                imagens: imagens.filter(img => img !== imagemPrincipal), // Remove a imagem principal do array de galeria
+                imagens: imagens.filter(img => img !== imagemPrincipal),
                 descricao
             };
             
@@ -1782,6 +2257,7 @@
             
             // Salvar e atualizar
             saveToStorage();
+            editingProductId = null;
             renderProductsTable();
             updateDashboard();
             toggleAddProduct();
@@ -1907,16 +2383,16 @@
             
             // Atualizar produto
             if(galleryImages.length > 0) {
-                produto.imagem = galleryImages[0]; // Primeira imagem é a principal
-                produto.imagens = galleryImages.slice(1); // Restante é a galeria
+                produto.imagem = galleryImages[0];
+                produto.imagens = galleryImages.slice(1);
             } else {
-                // Se não há imagens, usar placeholder
                 produto.imagem = 'https://via.placeholder.com/300x300?text=Sem+imagem';
                 produto.imagens = [];
             }
             
             // Salvar e atualizar
             saveToStorage();
+            editingProductId = null;
             renderProductsTable();
             closeGalleryModal();
             
@@ -1934,71 +2410,78 @@
         // EXPORTAR PARA JS
         function exportToJS() {
             try {
-                // Separar por categoria
-                const camisas = produtos.filter(p => p.categoria === 'camisas');
-                const calcas = produtos.filter(p => p.categoria === 'calcas');
+                showLoading(true);
                 
-                // Gerar conteúdo JS
-                let jsContent = `// ============================================\n`;
-                jsContent += `// JORDANWEARSTORE - PRODUTOS COM GALERIAS\n`;
-                jsContent += `// Exportado em: ${new Date().toLocaleString('pt-BR')}\n`;
-                jsContent += `// Total: ${produtos.length} produtos (${camisas.length} camisas + ${calcas.length} calças)\n`;
-                jsContent += `// ============================================\n\n`;
-                jsContent += `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
-                
-                camisas.forEach((produto, index) => {
-                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
-        
-                    // Adicionar array de imagens
-                    if(produto.imagens && produto.imagens.length > 0) {
-                        produto.imagens.forEach((img, imgIndex) => {
-                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
-                        });
-                        jsContent += `\n        ],`;
-                    } else {
-                        jsContent += `],`;
-                    }
+                setTimeout(() => {
+                    // Separar por categoria
+                    const camisas = produtos.filter(p => p.categoria === 'camisas');
+                    const calcas = produtos.filter(p => p.categoria === 'calcas');
                     
-                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
-                });
-                
-                jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
-                
-                calcas.forEach((produto, index) => {
-                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
-        
-                    // Adicionar array de imagens
-                    if(produto.imagens && produto.imagens.length > 0) {
-                        produto.imagens.forEach((img, imgIndex) => {
-                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
-                        });
-                        jsContent += `\n        ],`;
-                    } else {
-                        jsContent += `],`;
-                    }
+                    // Gerar conteúdo JS
+                    let jsContent = `// ============================================\n`;
+                    jsContent += `// JORDANWEARSTORE - PRODUTOS COM GALERIAS\n`;
+                    jsContent += `// Exportado em: ${new Date().toLocaleString('pt-BR')}\n`;
+                    jsContent += `// Total: ${produtos.length} produtos (${camisas.length} camisas + ${calcas.length} calças)\n`;
+                    jsContent += `// ============================================\n\n`;
+                    jsContent += `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
                     
-                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
-                });
-                
-                jsContent += `\n];`;
-                
-                // Criar arquivo para download
-                const blob = new Blob([jsContent], { type: 'application/javascript;charset=utf-8' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                const dateStr = new Date().toISOString().split('T')[0];
-                a.download = `jordanwearstore-produtos-${dateStr}.js`;
-                
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-                
-                showNotification(`Arquivo JS com ${produtos.length} produtos salvo com sucesso!`, 'success');
+                    camisas.forEach((produto, index) => {
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+            
+                        // Adicionar array de imagens
+                        if(produto.imagens && produto.imagens.length > 0) {
+                            produto.imagens.forEach((img, imgIndex) => {
+                                jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                            });
+                            jsContent += `\n        ],`;
+                        } else {
+                            jsContent += `],`;
+                        }
+                        
+                        jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
+                    });
+                    
+                    jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
+                    
+                    calcas.forEach((produto, index) => {
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+            
+                        // Adicionar array de imagens
+                        if(produto.imagens && produto.imagens.length > 0) {
+                            produto.imagens.forEach((img, imgIndex) => {
+                                jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                            });
+                            jsContent += `\n        ],`;
+                        } else {
+                            jsContent += `],`;
+                        }
+                        
+                        jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
+                    });
+                    
+                    jsContent += `\n];`;
+                    
+                    // Criar arquivo para download
+                    const blob = new Blob([jsContent], { type: 'application/javascript;charset=utf-8' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    const dateStr = new Date().toISOString().split('T')[0];
+                    a.download = `jordanwearstore-produtos-${dateStr}.js`;
+                    
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                    
+                    showLoading(false);
+                    showNotification(`Arquivo JS com ${produtos.length} produtos salvo com sucesso!`, 'success');
+                    
+                }, 500);
                 
             } catch(error) {
                 console.error('Erro ao exportar:', error);
+                showLoading(false);
                 showNotification('Erro ao salvar arquivo!', 'error');
             }
         }
@@ -2006,66 +2489,74 @@
         // COPIAR CÓDIGO PARA ÁREA DE TRANSFERÊNCIA
         function copyToClipboard() {
             try {
-                // Gerar código JS
-                const camisas = produtos.filter(p => p.categoria === 'camisas');
-                const calcas = produtos.filter(p => p.categoria === 'calcas');
+                showLoading(true);
                 
-                let jsContent = `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
-                
-                camisas.forEach((produto, index) => {
-                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
-        
-                    // Adicionar array de imagens
-                    if(produto.imagens && produto.imagens.length > 0) {
-                        produto.imagens.forEach((img, imgIndex) => {
-                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
-                        });
-                        jsContent += `\n        ],`;
-                    } else {
-                        jsContent += `],`;
-                    }
+                setTimeout(() => {
+                    // Gerar código JS
+                    const camisas = produtos.filter(p => p.categoria === 'camisas');
+                    const calcas = produtos.filter(p => p.categoria === 'calcas');
                     
-                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
-                });
-                
-                jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
-                
-                calcas.forEach((produto, index) => {
-                    jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
-        
-                    // Adicionar array de imagens
-                    if(produto.imagens && produto.imagens.length > 0) {
-                        produto.imagens.forEach((img, imgIndex) => {
-                            jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
-                        });
-                        jsContent += `\n        ],`;
-                    } else {
-                        jsContent += `],`;
-                    }
+                    let jsContent = `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
                     
-                    jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
-                });
-                
-                jsContent += `\n];`;
-                
-                // Copiar para área de transferência
-                navigator.clipboard.writeText(jsContent)
-                    .then(() => {
-                        showNotification(`Código com ${produtos.length} produtos copiado para a área de transferência!`, 'success');
-                    })
-                    .catch(err => {
-                        // Método alternativo para navegadores antigos
-                        const textArea = document.createElement('textarea');
-                        textArea.value = jsContent;
-                        document.body.appendChild(textArea);
-                        textArea.select();
-                        document.execCommand('copy');
-                        document.body.removeChild(textArea);
-                        showNotification(`Código com ${produtos.length} produtos copiado!`, 'success');
+                    camisas.forEach((produto, index) => {
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+            
+                        // Adicionar array de imagens
+                        if(produto.imagens && produto.imagens.length > 0) {
+                            produto.imagens.forEach((img, imgIndex) => {
+                                jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                            });
+                            jsContent += `\n        ],`;
+                        } else {
+                            jsContent += `],`;
+                        }
+                        
+                        jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
                     });
+                    
+                    jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
+                    
+                    calcas.forEach((produto, index) => {
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+            
+                        // Adicionar array de imagens
+                        if(produto.imagens && produto.imagens.length > 0) {
+                            produto.imagens.forEach((img, imgIndex) => {
+                                jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                            });
+                            jsContent += `\n        ],`;
+                        } else {
+                            jsContent += `],`;
+                        }
+                        
+                        jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
+                    });
+                    
+                    jsContent += `\n];`;
+                    
+                    // Copiar para área de transferência
+                    navigator.clipboard.writeText(jsContent)
+                        .then(() => {
+                            showLoading(false);
+                            showNotification(`Código com ${produtos.length} produtos copiado para a área de transferência!`, 'success');
+                        })
+                        .catch(err => {
+                            // Método alternativo para navegadores antigos
+                            const textArea = document.createElement('textarea');
+                            textArea.value = jsContent;
+                            document.body.appendChild(textArea);
+                            textArea.select();
+                            document.execCommand('copy');
+                            document.body.removeChild(textArea);
+                            showLoading(false);
+                            showNotification(`Código com ${produtos.length} produtos copiado!`, 'success');
+                        });
+                        
+                }, 500);
                     
             } catch(error) {
                 console.error('Erro ao copiar:', error);
+                showLoading(false);
                 showNotification('Erro ao copiar código!', 'error');
             }
         }
@@ -2081,6 +2572,8 @@
                 const file = event.target.files[0];
                 if (!file) return;
                 
+                showLoading(true);
+                
                 const reader = new FileReader();
                 
                 reader.onload = function(e) {
@@ -2092,7 +2585,7 @@
                         
                         // Verificar se é JS
                         if (content.includes('const produtos = [')) {
-                            // Extrair array do JS usando uma abordagem mais segura
+                            // Extrair array do JS
                             const startIndex = content.indexOf('const produtos = [');
                             const endIndex = content.lastIndexOf('];') + 2;
                             
@@ -2137,14 +2630,17 @@
                         
                         // Atualizar produtos
                         produtos = novosProdutos;
+                        editingProductId = null;
                         saveToStorage();
                         renderProductsTable();
                         updateDashboard();
                         
+                        showLoading(false);
                         showNotification(`${produtos.length} produtos carregados do arquivo!`, 'success');
                         
                     } catch(error) {
                         console.error('Erro ao carregar arquivo:', error);
+                        showLoading(false);
                         showNotification('Erro: Formato de arquivo inválido! Use arquivos JS ou JSON exportados deste sistema.', 'error');
                     }
                 };
@@ -2192,6 +2688,20 @@
             }, 3000);
         }
         
+        function showLoading(show) {
+            const spinner = document.getElementById('loadingSpinner');
+            spinner.style.display = show ? 'flex' : 'none';
+        }
+        
+        function showAutoSaveIndicator() {
+            const indicator = document.getElementById('autoSaveIndicator');
+            indicator.style.display = 'flex';
+            
+            setTimeout(() => {
+                indicator.style.display = 'none';
+            }, 2000);
+        }
+        
         // SALVAR AUTOMATICAMENTE AO SAIR
         window.addEventListener('beforeunload', function() {
             saveToStorage();
@@ -2201,8 +2711,19 @@
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeGalleryModal();
+                if (editingProductId) {
+                    editingProductId = null;
+                    renderProductsTable();
+                }
             }
         });
+        
+        // Auto-save periódico
+        setInterval(() => {
+            if (editingProductId) {
+                saveToStorage();
+            }
+        }, 30000); // Salva a cada 30 segundos durante edição
     </script>
 </body>
 </html>
