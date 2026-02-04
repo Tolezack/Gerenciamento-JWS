@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JordanWearStore - Gerenciador Completo</title>
+    <title>Jordan Store - Gerenciador Completo</title>
     <style>
         * {
             margin: 0;
@@ -434,6 +434,11 @@
         .category-calcas {
             background: #e8f5e9;
             color: #2e7d32;
+        }
+        
+        .category-tenis {
+            background: #fff3e0;
+            color: #f57c00;
         }
         
         .stock-cell {
@@ -969,7 +974,7 @@
             <div class="logo">
                 <h1>
                     <span class="logo-icon">👕</span>
-                    JordanWearStore - Gerenciador Completo
+                    Jordan Store - Gerenciador Completo
                 </h1>
                 <p>Gerencie produtos, galerias de imagens e gere código para seu site</p>
             </div>
@@ -1004,8 +1009,8 @@
         <div class="loaded-info" id="loadedInfo">
             <span>✅</span>
             <div>
-                <strong>36 produtos carregados!</strong>
-                <div style="font-size: 14px; color: #666;">Todas as camisas e calças estão disponíveis para edição.</div>
+                <strong>54 produtos carregados!</strong>
+                <div style="font-size: 14px; color: #666;">Camisas, calças e tênis disponíveis para edição.</div>
             </div>
         </div>
         
@@ -1016,7 +1021,7 @@
             <div class="form-grid">
                 <div class="form-group">
                     <label for="newProductId">ID do Produto *</label>
-                    <input type="text" id="newProductId" placeholder="Ex: camisa19 ou calca19">
+                    <input type="text" id="newProductId" placeholder="Ex: camisa19, calca19 ou tenis19">
                     <small style="color: #666; font-size: 12px;">ID único e não pode conter espaços</small>
                 </div>
                 
@@ -1030,6 +1035,7 @@
                     <select id="newProductCategory" onchange="generateProductId()">
                         <option value="camisas">Camisa</option>
                         <option value="calcas">Calça</option>
+                        <option value="tenis">Tênis</option>
                     </select>
                 </div>
                 
@@ -1096,6 +1102,10 @@
                 <div class="stat-value" id="calcasStock">0</div>
             </div>
             <div class="stat-card">
+                <h3>Tênis em Estoque</h3>
+                <div class="stat-value" id="tenisStock">0</div>
+            </div>
+            <div class="stat-card">
                 <h3>Valor Total</h3>
                 <div class="stat-value" id="totalValue">R$ 0,00</div>
             </div>
@@ -1141,7 +1151,7 @@
                     <p><strong>3. Exportar Código</strong></p>
                     <p>• "Copiar Código" copia para área de transferência</p>
                     <p>• "Salvar Código JS" baixa um arquivo .js</p>
-                    <p>• Cole o código no seu site JordanWearStore</p>
+                    <p>• Cole o código no seu site Jordan Store</p>
                 </div>
             </div>
         </div>
@@ -1194,10 +1204,9 @@
 
     <script>
         // ============================================
-        // SISTEMA AVANÇADO COM GALERIA DE IMAGENS
+        // SISTEMA COMPLETO COM 54 PRODUTOS
         // ============================================
         
-        // DADOS COMPLETOS COM TODOS OS 36 PRODUTOS
         let produtos = [
             // ======================================
             // CAMISAS - 18 PRODUTOS
@@ -1208,28 +1217,19 @@
                 categoria: 'camisas',
                 preco: 299.90,
                 estoque: 25,
-                imagem: 'https://images.unsplash.com/photo-1520975922284-8b456906c813?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1520975922284-8b456906c813?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1523381140794-a1eef18a37c1?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Clássica camisa Jordan com tecnologia Dry-Fit premium. Material: 100% poliéster tech. Disponível em todas as cores.'
+                imagem: 'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Camisa clássica da linha Air Jordan com tecido premium e design icônico'
             },
             {
                 id: 'camisa2',
                 nome: 'Camisa Jordan Retro 23',
                 categoria: 'camisas',
                 preco: 289.90,
-                estoque: 18,
+                estoque: 2,
                 imagem: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Design retrô inspirado nos anos 90 com logo bordado. Detalhes em contraste.'
+                imagens: [],
+                descricao: 'Design retrô inspirado nos anos 90 com logo bordado'
             },
             {
                 id: 'camisa3',
@@ -1238,12 +1238,8 @@
                 preco: 329.90,
                 estoque: 12,
                 imagem: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tecnologia de alta performance para atividades esportivas. Secagem rápida.'
+                imagens: [],
+                descricao: 'Tecnologia de alta performance para atividades esportivas'
             },
             {
                 id: 'camisa4',
@@ -1252,12 +1248,8 @@
                 preco: 349.90,
                 estoque: 8,
                 imagem: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Edição especial com assinatura bordada e detalhes premium em acabamento sofisticado.'
+                imagens: [],
+                descricao: 'Edição especial com assinatura bordada e detalhes premium'
             },
             {
                 id: 'camisa5',
@@ -1266,12 +1258,8 @@
                 preco: 269.90,
                 estoque: 15,
                 imagem: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Estilo urbano com design moderno e conforto máximo para o dia a dia.'
+                imagens: [],
+                descricao: 'Estilo urbano com design moderno e conforto máximo'
             },
             {
                 id: 'camisa6',
@@ -1280,11 +1268,8 @@
                 preco: 199.90,
                 estoque: 30,
                 imagem: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Básica essencial para o dia a dia, super confortável e versátil.'
+                imagens: [],
+                descricao: 'Básica essencial para o dia a dia, super confortável'
             },
             {
                 id: 'camisa7',
@@ -1293,12 +1278,8 @@
                 preco: 379.90,
                 estoque: 5,
                 imagem: 'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Linha profissional com materiais de alta qualidade e durabilidade.'
+                imagens: [],
+                descricao: 'Linha profissional com materiais de alta qualidade'
             },
             {
                 id: 'camisa8',
@@ -1307,12 +1288,8 @@
                 preco: 319.90,
                 estoque: 22,
                 imagem: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Design elegante para jogos noturnos e eventos especiais.'
+                imagens: [],
+                descricao: 'Design elegante para jogos noturnos e eventos especiais'
             },
             {
                 id: 'camisa9',
@@ -1321,12 +1298,8 @@
                 preco: 239.90,
                 estoque: 14,
                 imagem: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Edição verão com tecido leve e respirabilidade máxima.'
+                imagens: [],
+                descricao: 'Edição verão com tecido leve e respirabilidade máxima'
             },
             {
                 id: 'camisa10',
@@ -1335,12 +1308,8 @@
                 preco: 459.90,
                 estoque: 3,
                 imagem: 'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Edição limitada numerada, apenas 100 unidades produzidas.'
+                imagens: [],
+                descricao: 'Edição limitada numerada, apenas 100 unidades produzidas'
             },
             {
                 id: 'camisa11',
@@ -1349,12 +1318,8 @@
                 preco: 329.90,
                 estoque: 20,
                 imagem: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tecnologia Air Max para máximo conforto e estilo.'
+                imagens: [],
+                descricao: 'Tecnologia Air Max para máximo conforto e estilo'
             },
             {
                 id: 'camisa12',
@@ -1363,12 +1328,8 @@
                 preco: 279.90,
                 estoque: 16,
                 imagem: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Flexibilidade urbana com design contemporâneo.'
+                imagens: [],
+                descricao: 'Flexibilidade urbana com design contemporâneo'
             },
             {
                 id: 'camisa13',
@@ -1377,12 +1338,8 @@
                 preco: 299.90,
                 estoque: 11,
                 imagem: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Inspirada nas quadras com estilo esportivo moderno.'
+                imagens: [],
+                descricao: 'Inspirada nas quadras com estilo esportivo moderno'
             },
             {
                 id: 'camisa14',
@@ -1391,12 +1348,8 @@
                 preco: 349.90,
                 estoque: 7,
                 imagem: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Herança Jordan com detalhes clássicos e modernos.'
+                imagens: [],
+                descricao: 'Herança Jordan com detalhes clássicos e modernos'
             },
             {
                 id: 'camisa15',
@@ -1405,12 +1358,8 @@
                 preco: 269.90,
                 estoque: 19,
                 imagem: 'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tecnologia Bounce para liberdade de movimento.'
+                imagens: [],
+                descricao: 'Tecnologia Bounce para liberdade de movimento'
             },
             {
                 id: 'camisa16',
@@ -1419,12 +1368,8 @@
                 preco: 389.90,
                 estoque: 9,
                 imagem: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Conforto React com resposta energética premium.'
+                imagens: [],
+                descricao: 'Conforto React com resposta energética premium'
             },
             {
                 id: 'camisa17',
@@ -1433,12 +1378,8 @@
                 preco: 319.90,
                 estoque: 13,
                 imagem: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tecnologia Zoom para velocidade e agilidade.'
+                imagens: [],
+                descricao: 'Tecnologia Zoom para velocidade e agilidade'
             },
             {
                 id: 'camisa18',
@@ -1447,12 +1388,8 @@
                 preco: 279.90,
                 estoque: 21,
                 imagem: 'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Sistema FlyEase para fácil uso e máximo conforto.'
+                imagens: [],
+                descricao: 'Sistema FlyEase para fácil uso e máximo conforto'
             },
             
             // ======================================
@@ -1465,12 +1402,8 @@
                 preco: 389.90,
                 estoque: 20,
                 imagem: 'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Jeans clássico com elastano para máximo conforto no dia a dia.'
+                imagens: [],
+                descricao: 'Jeans clássico com elastano para máximo conforto'
             },
             {
                 id: 'calca2',
@@ -1479,12 +1412,8 @@
                 preco: 329.90,
                 estoque: 15,
                 imagem: 'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Cargo prática com múltiplos bolsos e design utilitário.'
+                imagens: [],
+                descricao: 'Cargo prática com múltiplos bolsos e design utilitário'
             },
             {
                 id: 'calca3',
@@ -1493,12 +1422,8 @@
                 preco: 279.90,
                 estoque: 25,
                 imagem: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Moletom ultra confortável para relaxar em estilo.'
+                imagens: [],
+                descricao: 'Moletom ultra confortável para relaxar em estilo'
             },
             {
                 id: 'calca4',
@@ -1507,12 +1432,8 @@
                 preco: 349.90,
                 estoque: 18,
                 imagem: 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Chino executivo para ocasiões formais e casuais.'
+                imagens: [],
+                descricao: 'Chino executivo para ocasiões formais e casuais'
             },
             {
                 id: 'calca5',
@@ -1521,12 +1442,8 @@
                 preco: 299.90,
                 estoque: 22,
                 imagem: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Jogger esportiva com ajuste perfeito e mobilidade.'
+                imagens: [],
+                descricao: 'Jogger esportiva com ajuste perfeito e mobilidade'
             },
             {
                 id: 'calca6',
@@ -1535,12 +1452,8 @@
                 preco: 429.90,
                 estoque: 10,
                 imagem: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Social premium com corte italiano e tecido de alta qualidade.'
+                imagens: [],
+                descricao: 'Social premium com corte italiano e tecido de alta qualidade'
             },
             {
                 id: 'calca7',
@@ -1549,12 +1462,8 @@
                 preco: 319.90,
                 estoque: 12,
                 imagem: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tactel de performance para atividades físicas intensas.'
+                imagens: [],
+                descricao: 'Tactel de performance para atividades físicas intensas'
             },
             {
                 id: 'calca8',
@@ -1563,12 +1472,8 @@
                 preco: 369.90,
                 estoque: 8,
                 imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Wide leg fashion com corte moderno e tendência streetwear.'
+                imagens: [],
+                descricao: 'Wide leg fashion com corte moderno e tendência streetwear'
             },
             {
                 id: 'calca9',
@@ -1577,26 +1482,18 @@
                 preco: 289.90,
                 estoque: 16,
                 imagem: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Linho leve e respirável para os dias mais quentes.'
+                imagens: [],
+                descricao: 'Linho leve e respirável para os dias mais quentes'
             },
             {
                 id: 'calca10',
                 nome: 'Calça Couro Jordan Urban',
                 categoria: 'calcas',
                 preco: 599.90,
-                estoque: 4,
+                estoque: 1,
                 imagem: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Couro legítimo com design urbano e estilo ousado.'
+                imagens: [],
+                descricao: 'Couro legítimo com design urbano e estilo ousado'
             },
             {
                 id: 'calca11',
@@ -1605,12 +1502,8 @@
                 preco: 339.90,
                 estoque: 17,
                 imagem: 'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Sarja slim fit com corte moderno e ajuste perfeito.'
+                imagens: [],
+                descricao: 'Sarja slim fit com corte moderno e ajuste perfeito'
             },
             {
                 id: 'calca12',
@@ -1619,12 +1512,8 @@
                 preco: 299.90,
                 estoque: 14,
                 imagem: 'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tactel para atividades físicas com máxima liberdade.'
+                imagens: [],
+                descricao: 'Tactel para atividades físicas com máxima liberdade'
             },
             {
                 id: 'calca13',
@@ -1633,12 +1522,8 @@
                 preco: 319.90,
                 estoque: 11,
                 imagem: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Moletom tech fleece com tecnologia térmica avançada.'
+                imagens: [],
+                descricao: 'Moletom tech fleece com tecnologia térmica avançada'
             },
             {
                 id: 'calca14',
@@ -1647,12 +1532,8 @@
                 preco: 379.90,
                 estoque: 9,
                 imagem: 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Jeans skinny fit com elastano e corte moderno.'
+                imagens: [],
+                descricao: 'Jeans skinny fit com elastano e corte moderno'
             },
             {
                 id: 'calca15',
@@ -1661,12 +1542,8 @@
                 preco: 349.90,
                 estoque: 13,
                 imagem: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Cargo estilo militar com múltiplos bolsos funcionais.'
+                imagens: [],
+                descricao: 'Cargo estilo militar com múltiplos bolsos funcionais'
             },
             {
                 id: 'calca16',
@@ -1675,12 +1552,8 @@
                 preco: 289.90,
                 estoque: 19,
                 imagem: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Sarja regular fit para uso casual e confortável.'
+                imagens: [],
+                descricao: 'Sarja regular fit para uso casual e confortável'
             },
             {
                 id: 'calca17',
@@ -1689,12 +1562,8 @@
                 preco: 359.90,
                 estoque: 7,
                 imagem: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Tactel profissional para alto rendimento esportivo.'
+                imagens: [],
+                descricao: 'Tactel profissional para alto rendimento esportivo'
             },
             {
                 id: 'calca18',
@@ -1703,12 +1572,192 @@
                 preco: 329.90,
                 estoque: 15,
                 imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop',
-                imagens: [
-                    'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop',
-                    'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'
-                ],
-                descricao: 'Jeans relaxed fit para máximo conforto no dia a dia.'
+                imagens: [],
+                descricao: 'Jeans relaxed fit para máximo conforto no dia a dia'
+            },
+
+            // ======================================
+            // TÊNIS - 18 PRODUTOS
+            // ======================================
+            {
+                id: 'tenis1',
+                nome: 'Air Jordan 1 Retro High OG',
+                categoria: 'tenis',
+                preco: 1299.90,
+                estoque: 8,
+                imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Clássico absoluto, edição original com design icônico'
+            },
+            {
+                id: 'tenis2',
+                nome: 'Air Jordan 4 Retro "Bred"',
+                categoria: 'tenis',
+                preco: 1499.90,
+                estoque: 5,
+                imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Edição Black/Red, uma das mais desejadas da linha'
+            },
+            {
+                id: 'tenis3',
+                nome: 'Air Jordan 11 Retro "Concord"',
+                categoria: 'tenis',
+                preco: 1399.90,
+                estoque: 7,
+                imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Design elegante com sola de gel e detalhes em patent leather'
+            },
+            {
+                id: 'tenis4',
+                nome: 'Air Jordan 3 Retro "White Cement"',
+                categoria: 'tenis',
+                preco: 1199.90,
+                estoque: 10,
+                imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Primeiro modelo assinado por Tinker Hatfield'
+            },
+            {
+                id: 'tenis5',
+                nome: 'Air Jordan 6 Retro "Infrared"',
+                categoria: 'tenis',
+                preco: 1249.90,
+                estoque: 6,
+                imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Modelo usado por MJ na primeira conquista do título da NBA'
+            },
+            {
+                id: 'tenis6',
+                nome: 'Air Jordan 12 Retro "Flu Game"',
+                categoria: 'tenis',
+                preco: 1349.90,
+                estoque: 9,
+                imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Famoso "Flu Game", edição histórica'
+            },
+            {
+                id: 'tenis7',
+                nome: 'Air Jordan 5 Retro "Grape"',
+                categoria: 'tenis',
+                preco: 1149.90,
+                estoque: 12,
+                imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Clássico grape com detalhes em roxo e verde'
+            },
+            {
+                id: 'tenis8',
+                nome: 'Air Jordan 13 Retro "He Got Game"',
+                categoria: 'tenis',
+                preco: 1299.90,
+                estoque: 8,
+                imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Inspirado no filme "He Got Game", design futurista'
+            },
+            {
+                id: 'tenis9',
+                nome: 'Air Jordan 1 Mid "Chicago"',
+                categoria: 'tenis',
+                preco: 899.90,
+                estoque: 15,
+                imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Versão Mid do clássico Chicago, mais acessível'
+            },
+            {
+                id: 'tenis10',
+                nome: 'Jordan Why Not Zer0.4',
+                categoria: 'tenis',
+                preco: 799.90,
+                estoque: 20,
+                imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Assinatura de Russell Westbrook, design agressivo'
+            },
+            {
+                id: 'tenis11',
+                nome: 'Air Jordan 34 Low',
+                categoria: 'tenis',
+                preco: 1199.90,
+                estoque: 11,
+                imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Tecnologia Eclipse Plate, máximo desempenho'
+            },
+            {
+                id: 'tenis12',
+                nome: 'Jordan Delta 2',
+                categoria: 'tenis',
+                preco: 699.90,
+                estoque: 18,
+                imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Conforto premium para o dia a dia'
+            },
+            {
+                id: 'tenis13',
+                nome: 'Air Jordan 1 Low OG',
+                categoria: 'tenis',
+                preco: 849.90,
+                estoque: 14,
+                imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Versão low do clássico, perfeita para casual'
+            },
+            {
+                id: 'tenis14',
+                nome: 'Jordan React Elevation',
+                categoria: 'tenis',
+                preco: 749.90,
+                estoque: 16,
+                imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Tecnologia React para máximo conforto'
+            },
+            {
+                id: 'tenis15',
+                nome: 'Air Jordan 7 Retro "Hare"',
+                categoria: 'tenis',
+                preco: 1249.90,
+                estoque: 7,
+                imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Edição especial inspirada no personagem Bugs Bunny'
+            },
+            {
+                id: 'tenis16',
+                nome: 'Jordan Proto-React',
+                categoria: 'tenis',
+                preco: 599.90,
+                estoque: 22,
+                imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Design moderno com amortecimento React'
+            },
+            {
+                id: 'tenis17',
+                nome: 'Air Jordan 8 Retro "Playoffs"',
+                categoria: 'tenis',
+                preco: 1299.90,
+                estoque: 6,
+                imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Modelo usado por MJ nos playoffs de 1993'
+            },
+            {
+                id: 'tenis18',
+                nome: 'Jordan Max 200',
+                categoria: 'tenis',
+                preco: 549.90,
+                estoque: 25,
+                imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop',
+                imagens: [],
+                descricao: 'Conforto Air Max a preço acessível'
             }
         ];
 
@@ -1730,12 +1779,11 @@
         
         // INICIALIZAR
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('✅ Sistema JordanWearStore carregado com 36 produtos!');
+            console.log('✅ Sistema Jordan Store carregado com 54 produtos!');
             loadFromStorage();
             updateDashboard();
             renderProductsTable();
             
-            // Focar na tabela ao carregar
             setTimeout(() => {
                 const tbody = document.getElementById('productsTableBody');
                 if (tbody.children.length > 0) {
@@ -1747,7 +1795,7 @@
         // SALVAR NO LOCALSTORAGE
         function saveToStorage() {
             try {
-                localStorage.setItem('jordanwearstore_produtos', JSON.stringify(produtos));
+                localStorage.setItem('jordanstore_produtos', JSON.stringify(produtos));
                 showAutoSaveIndicator();
             } catch(error) {
                 console.error('Erro ao salvar:', error);
@@ -1758,82 +1806,17 @@
         // CARREGAR DO LOCALSTORAGE
         function loadFromStorage() {
             try {
-                const saved = localStorage.getItem('jordanwearstore_produtos');
+                const saved = localStorage.getItem('jordanstore_produtos');
                 if(saved) {
                     const parsed = JSON.parse(saved);
-                    // Validar e garantir que todos os produtos tenham array de imagens
                     produtos = parsed.map(produto => {
                         if (!produto.imagens) produto.imagens = [];
-                        // Remover imagem principal do array de imagens se estiver duplicada
-                        if (produto.imagens.includes(produto.imagem)) {
-                            produto.imagens = produto.imagens.filter(img => img !== produto.imagem);
-                        }
                         return produto;
                     });
                     showNotification('Dados carregados do armazenamento local', 'info');
                 }
             } catch(error) {
                 console.error('Erro ao carregar:', error);
-            }
-        }
-        
-        // RESETAR PARA DADOS PADRÃO
-        function resetToDefault() {
-            if(confirm('Tem certeza que deseja resetar todos os produtos para os valores padrão? Isso irá substituir todas as alterações.')) {
-                showLoading(true);
-                
-                setTimeout(() => {
-                    // Restaurar dados originais (cópia profunda)
-                    const originalData = [
-                        // Camisas
-                        {id:'camisa1',nome:'Camisa Jordan Air Classic',categoria:'camisas',preco:299.90,estoque:25,imagem:'https://images.unsplash.com/photo-1520975922284-8b456906c813?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1520975922284-8b456906c813?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1523381140794-a1eef18a37c1?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'],descricao:'Clássica camisa Jordan com tecnologia Dry-Fit premium. Material: 100% poliéster tech. Disponível em todas as cores.'},
-                        {id:'camisa2',nome:'Camisa Jordan Retro 23',categoria:'camisas',preco:289.90,estoque:18,imagem:'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1516826957135-700dedea698c?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1519457431-44ccd64a579b?w=600&h=400&fit=crop'],descricao:'Design retrô inspirado nos anos 90 com logo bordado. Detalhes em contraste.'},
-                        {id:'camisa3',nome:'Camisa Jordan Performance',categoria:'camisas',preco:329.90,estoque:12,imagem:'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'],descricao:'Tecnologia de alta performance para atividades esportivas. Secagem rápida.'},
-                        {id:'camisa4',nome:'Camisa Jordan Signature',categoria:'camisas',preco:349.90,estoque:8,imagem:'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Edição especial com assinatura bordada e detalhes premium em acabamento sofisticado.'},
-                        {id:'camisa5',nome:'Camisa Jordan Street Style',categoria:'camisas',preco:269.90,estoque:15,imagem:'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop'],descricao:'Estilo urbano com design moderno e conforto máximo para o dia a dia.'},
-                        {id:'camisa6',nome:'Camisa Jordan Essentials',categoria:'camisas',preco:199.90,estoque:30,imagem:'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop'],descricao:'Básica essencial para o dia a dia, super confortável e versátil.'},
-                        {id:'camisa7',nome:'Camisa Jordan Pro Elite',categoria:'camisas',preco:379.90,estoque:5,imagem:'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Linha profissional com materiais de alta qualidade e durabilidade.'},
-                        {id:'camisa8',nome:'Camisa Jordan Night Game',categoria:'camisas',preco:319.90,estoque:22,imagem:'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Design elegante para jogos noturnos e eventos especiais.'},
-                        {id:'camisa9',nome:'Camisa Jordan Summer Edition',categoria:'camisas',preco:239.90,estoque:14,imagem:'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Edição verão com tecido leve e respirabilidade máxima.'},
-                        {id:'camisa10',nome:'Camisa Jordan Limited Edition',categoria:'camisas',preco:459.90,estoque:3,imagem:'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Edição limitada numerada, apenas 100 unidades produzidas.'},
-                        {id:'camisa11',nome:'Camisa Jordan Air Max Pro',categoria:'camisas',preco:329.90,estoque:20,imagem:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?w=600&h=400&fit=crop'],descricao:'Tecnologia Air Max para máximo conforto e estilo.'},
-                        {id:'camisa12',nome:'Camisa Jordan Urban Flex',categoria:'camisas',preco:279.90,estoque:16,imagem:'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Flexibilidade urbana com design contemporâneo.'},
-                        {id:'camisa13',nome:'Camisa Jordan Court Vision',categoria:'camisas',preco:299.90,estoque:11,imagem:'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Inspirada nas quadras com estilo esportivo moderno.'},
-                        {id:'camisa14',nome:'Camisa Jordan Heritage',categoria:'camisas',preco:349.90,estoque:7,imagem:'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1551028719-00167b16eac5?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Herança Jordan com detalhes clássicos e modernos.'},
-                        {id:'camisa15',nome:'Camisa Jordan Bounce',categoria:'camisas',preco:269.90,estoque:19,imagem:'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Tecnologia Bounce para liberdade de movimento.'},
-                        {id:'camisa16',nome:'Camisa Jordan React',categoria:'camisas',preco:389.90,estoque:9,imagem:'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Conforto React com resposta energética premium.'},
-                        {id:'camisa17',nome:'Camisa Jordan Zoom',categoria:'camisas',preco:319.90,estoque:13,imagem:'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1544441893-675973e31985?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1558769132-cb1f9c0c61ca?w=600&h=400&fit=crop'],descricao:'Tecnologia Zoom para velocidade e agilidade.'},
-                        {id:'camisa18',nome:'Camisa Jordan FlyEase',categoria:'camisas',preco:279.90,estoque:21,imagem:'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1594032194509-0056023973b2?w=600&h=400&fit=crop'],descricao:'Sistema FlyEase para fácil uso e máximo conforto.'},
-                        // Calças
-                        {id:'calca1',nome:'Calça Jeans Jordan Classic',categoria:'calcas',preco:389.90,estoque:20,imagem:'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Jeans clássico com elastano para máximo conforto no dia a dia.'},
-                        {id:'calca2',nome:'Calça Cargo Jordan Utility',categoria:'calcas',preco:329.90,estoque:15,imagem:'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Cargo prática com múltiplos bolsos e design utilitário.'},
-                        {id:'calca3',nome:'Calça Moletom Jordan Comfort',categoria:'calcas',preco:279.90,estoque:25,imagem:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Moletom ultra confortável para relaxar em estilo.'},
-                        {id:'calca4',nome:'Calça Chino Jordan Executive',categoria:'calcas',preco:349.90,estoque:18,imagem:'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Chino executivo para ocasiões formais e casuais.'},
-                        {id:'calca5',nome:'Calça Jogger Jordan Sport',categoria:'calcas',preco:299.90,estoque:22,imagem:'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Jogger esportiva com ajuste perfeito e mobilidade.'},
-                        {id:'calca6',nome:'Calça Social Jordan Premium',categoria:'calcas',preco:429.90,estoque:10,imagem:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Social premium com corte italiano e tecido de alta qualidade.'},
-                        {id:'calca7',nome:'Calça Tactel Jordan Performance',categoria:'calcas',preco:319.90,estoque:12,imagem:'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Tactel de performance para atividades físicas intensas.'},
-                        {id:'calca8',nome:'Calça Wide Leg Jordan',categoria:'calcas',preco:369.90,estoque:8,imagem:'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Wide leg fashion com corte moderno e tendência streetwear.'},
-                        {id:'calca9',nome:'Calça Linho Jordan Summer',categoria:'calcas',preco:289.90,estoque:16,imagem:'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Linho leve e respirável para os dias mais quentes.'},
-                        {id:'calca10',nome:'Calça Couro Jordan Urban',categoria:'calcas',preco:599.90,estoque:4,imagem:'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Couro legítimo com design urbano e estilo ousado.'},
-                        {id:'calca11',nome:'Calça Sarja Jordan Slim',categoria:'calcas',preco:339.90,estoque:17,imagem:'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Sarja slim fit com corte moderno e ajuste perfeito.'},
-                        {id:'calca12',nome:'Calça Tactel Jordan Active',categoria:'calcas',preco:299.90,estoque:14,imagem:'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Tactel para atividades físicas com máxima liberdade.'},
-                        {id:'calca13',nome:'Calça Moletom Jordan Tech',categoria:'calcas',preco:319.90,estoque:11,imagem:'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Moletom tech fleece com tecnologia térmica avançada.'},
-                        {id:'calca14',nome:'Calça Jeans Jordan Skinny',categoria:'calcas',preco:379.90,estoque:9,imagem:'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Jeans skinny fit com elastano e corte moderno.'},
-                        {id:'calca15',nome:'Calça Cargo Jordan Military',categoria:'calcas',preco:349.90,estoque:13,imagem:'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop'],descricao:'Cargo estilo militar com múltiplos bolsos funcionais.'},
-                        {id:'calca16',nome:'Calça Sarja Jordan Regular',categoria:'calcas',preco:289.90,estoque:19,imagem:'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1542272604-787c3835535d?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Sarja regular fit para uso casual e confortável.'},
-                        {id:'calca17',nome:'Calça Tactel Jordan Pro',categoria:'calcas',preco:359.90,estoque:7,imagem:'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1475178626620-a4d074967452?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Tactel profissional para alto rendimento esportivo.'},
-                        {id:'calca18',nome:'Calça Jeans Jordan Relaxed',categoria:'calcas',preco:329.90,estoque:15,imagem:'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop',imagens:['https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=600&h=400&fit=crop','https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&h=400&fit=crop'],descricao:'Jeans relaxed fit para máximo conforto no dia a dia.'}
-                    ];
-                    
-                    produtos = originalData;
-                    saveToStorage();
-                    editingProductId = null;
-                    renderProductsTable();
-                    updateDashboard();
-                    
-                    showLoading(false);
-                    showNotification('Produtos resetados para valores padrão!', 'success');
-                }, 1000);
             }
         }
         
@@ -1846,18 +1829,21 @@
             const calcasStock = produtos
                 .filter(p => p.categoria === 'calcas')
                 .reduce((sum, p) => sum + p.estoque, 0);
+            const tenisStock = produtos
+                .filter(p => p.categoria === 'tenis')
+                .reduce((sum, p) => sum + p.estoque, 0);
             const totalValue = produtos
                 .reduce((sum, p) => sum + (p.preco * p.estoque), 0);
             
             document.getElementById('totalProducts').textContent = totalProducts;
             document.getElementById('camisasStock').textContent = camisasStock;
             document.getElementById('calcasStock').textContent = calcasStock;
+            document.getElementById('tenisStock').textContent = tenisStock;
             document.getElementById('totalValue').textContent = `R$ ${totalValue.toLocaleString('pt-BR', {minimumFractionDigits: 2})}`;
         }
         
         // ORDENAR TABELA
         function sortTable(field) {
-            // Alternar direção se clicar no mesmo campo
             if (sortField === field) {
                 sortDirection = sortDirection === 'asc' ? 'desc' : 'asc';
             } else {
@@ -1865,7 +1851,6 @@
                 sortDirection = 'asc';
             }
             
-            // Atualizar indicadores visuais
             document.querySelectorAll('.sortable').forEach(th => {
                 th.classList.remove('asc', 'desc');
                 if (th.getAttribute('onclick')?.includes(`sortTable('${field}')`)) {
@@ -1880,7 +1865,6 @@
         function renderProductsTable() {
             const tbody = document.getElementById('productsTableBody');
             
-            // Ordenar produtos
             const produtosOrdenados = [...produtos].sort((a, b) => {
                 let valA, valB;
                 
@@ -1928,8 +1912,19 @@
                     const hasGallery = produto.imagens && produto.imagens.length > 0;
                     const totalImages = hasGallery ? produto.imagens.length + 1 : 1;
                     
-                    // Verificar se este produto está sendo editado
                     const isEditing = editingProductId === produto.id;
+                    
+                    // Determinar classe da categoria
+                    let categoryClass = '';
+                    if (produto.categoria === 'camisas') categoryClass = 'category-camisas';
+                    else if (produto.categoria === 'calcas') categoryClass = 'category-calcas';
+                    else if (produto.categoria === 'tenis') categoryClass = 'category-tenis';
+                    
+                    // Determinar nome da categoria para exibição
+                    let categoryDisplay = '';
+                    if (produto.categoria === 'camisas') categoryDisplay = 'Camisa';
+                    else if (produto.categoria === 'calcas') categoryDisplay = 'Calça';
+                    else if (produto.categoria === 'tenis') categoryDisplay = 'Tênis';
                     
                     html += `
                     <tr>
@@ -1947,8 +1942,8 @@
                             </div>
                         </td>
                         <td>
-                            <span class="product-category category-${produto.categoria}">
-                                ${produto.categoria === 'camisas' ? 'Camisa' : 'Calça'}
+                            <span class="product-category ${categoryClass}">
+                                ${categoryDisplay}
                             </span>
                         </td>
                         <td class="stock-cell">R$ ${produto.preco.toLocaleString('pt-BR', {minimumFractionDigits: 2})}</td>
@@ -2024,22 +2019,18 @@
             const produto = produtos.find(p => p.id === productId);
             if(!produto) return;
             
-            // Obter novos valores
             const novoEstoque = document.getElementById(`editStock-${productId}`).value;
             const novaDescricao = document.getElementById(`editDesc-${productId}`).value.trim();
             
-            // Validar estoque
             const estoqueNum = parseInt(novoEstoque);
             if(isNaN(estoqueNum) || estoqueNum < 0) {
                 showNotification('Estoque inválido! Digite um número maior ou igual a 0.', 'error');
                 return;
             }
             
-            // Atualizar produto
             produto.estoque = estoqueNum;
             produto.descricao = novaDescricao;
             
-            // Salvar e atualizar
             saveToStorage();
             editingProductId = null;
             renderProductsTable();
@@ -2116,7 +2107,6 @@
             form.style.display = form.style.display === 'block' ? 'none' : 'block';
             
             if(form.style.display === 'block') {
-                // Limpar formulário
                 document.getElementById('newProductId').value = '';
                 document.getElementById('newProductName').value = '';
                 document.getElementById('newProductCategory').value = 'camisas';
@@ -2126,13 +2116,10 @@
                 document.getElementById('newProductDescription').value = '';
                 document.getElementById('galleryImageUrl').value = '';
                 
-                // Limpar galeria
                 document.getElementById('galleryPreview').innerHTML = '';
                 
-                // Gerar ID automático
                 generateProductId();
                 
-                // Focar no primeiro campo
                 document.getElementById('newProductName').focus();
             }
         }
@@ -2147,7 +2134,6 @@
                 return;
             }
             
-            // Validar URL
             if(!url.startsWith('http')) {
                 showNotification('URL deve começar com http:// ou https://', 'error');
                 return;
@@ -2191,7 +2177,6 @@
             const imagem = document.getElementById('newProductImage').value.trim();
             const descricao = document.getElementById('newProductDescription').value.trim();
             
-            // Coletar imagens da galeria
             const galleryItems = document.querySelectorAll('#galleryPreview .gallery-item img');
             const imagens = [];
             galleryItems.forEach(item => {
@@ -2200,15 +2185,12 @@
                 }
             });
             
-            // Se não há imagem principal, usar a primeira da galeria
             let imagemPrincipal = imagem;
             if(!imagemPrincipal && imagens.length > 0) {
                 imagemPrincipal = imagens[0];
-                // Remover a imagem principal do array de imagens
                 imagens.shift();
             }
             
-            // Validação
             if(!id || !nome || !categoria || isNaN(preco) || isNaN(estoque) || !imagemPrincipal) {
                 showNotification('Preencha todos os campos obrigatórios! (ID, Nome, Categoria, Preço, Estoque, Imagem Principal)', 'error');
                 return;
@@ -2219,19 +2201,16 @@
                 return;
             }
             
-            // Validar formato do ID
             if(id.includes(' ')) {
                 showNotification('ID não pode conter espaços!', 'error');
                 return;
             }
             
-            // Verificar se ID já existe
             if(produtos.some(p => p.id === id)) {
                 showNotification('Já existe um produto com este ID! Escolha outro.', 'error');
                 return;
             }
             
-            // Adicionar novo produto
             const novoProduto = {
                 id,
                 nome,
@@ -2245,17 +2224,15 @@
             
             produtos.push(novoProduto);
             
-            // Ordenar produtos
             produtos.sort((a, b) => {
                 if(a.categoria !== b.categoria) {
-                    return a.categoria === 'camisas' ? -1 : 1;
+                    return a.categoria.localeCompare(b.categoria);
                 }
                 const numA = parseInt(a.id.replace(/\D/g, '')) || 0;
                 const numB = parseInt(b.id.replace(/\D/g, '')) || 0;
                 return numA - numB;
             });
             
-            // Salvar e atualizar
             saveToStorage();
             editingProductId = null;
             renderProductsTable();
@@ -2275,26 +2252,20 @@
                 return;
             }
             
-            // Inicializar galeria
             galleryImages = produto.imagens ? [...produto.imagens] : [];
-            // Adicionar imagem principal no início
             galleryImages.unshift(produto.imagem);
             
-            // Atualizar UI
             document.getElementById('modalProductName').textContent = `📸 Galeria - ${produto.nome}`;
             currentGalleryIndex = 0;
             
-            // Exibir primeira imagem
             if(galleryImages.length > 0 && galleryImages[0]) {
                 document.getElementById('currentGalleryImage').src = galleryImages[0];
             } else {
                 document.getElementById('currentGalleryImage').src = 'https://via.placeholder.com/600x400?text=Sem+imagens';
             }
             
-            // Atualizar miniaturas
             updateGalleryThumbnails();
             
-            // Mostrar modal
             document.getElementById('galleryModal').style.display = 'flex';
         }
         
@@ -2355,12 +2326,10 @@
             if(confirm('Tem certeza que deseja remover esta imagem da galeria?')) {
                 galleryImages.splice(currentGalleryIndex, 1);
                 
-                // Ajustar índice
                 if(currentGalleryIndex >= galleryImages.length) {
                     currentGalleryIndex = galleryImages.length - 1;
                 }
                 
-                // Atualizar exibição
                 if(galleryImages.length > 0) {
                     document.getElementById('currentGalleryImage').src = galleryImages[currentGalleryIndex];
                 } else {
@@ -2381,7 +2350,6 @@
                 return;
             }
             
-            // Atualizar produto
             if(galleryImages.length > 0) {
                 produto.imagem = galleryImages[0];
                 produto.imagens = galleryImages.slice(1);
@@ -2390,7 +2358,6 @@
                 produto.imagens = [];
             }
             
-            // Salvar e atualizar
             saveToStorage();
             editingProductId = null;
             renderProductsTable();
@@ -2413,29 +2380,28 @@
                 showLoading(true);
                 
                 setTimeout(() => {
-                    // Separar por categoria
                     const camisas = produtos.filter(p => p.categoria === 'camisas');
                     const calcas = produtos.filter(p => p.categoria === 'calcas');
+                    const tenis = produtos.filter(p => p.categoria === 'tenis');
                     
-                    // Gerar conteúdo JS
                     let jsContent = `// ============================================\n`;
-                    jsContent += `// JORDANWEARSTORE - PRODUTOS COM GALERIAS\n`;
+                    jsContent += `// JORDAN STORE - PRODUTOS COMPLETOS\n`;
                     jsContent += `// Exportado em: ${new Date().toLocaleString('pt-BR')}\n`;
-                    jsContent += `// Total: ${produtos.length} produtos (${camisas.length} camisas + ${calcas.length} calças)\n`;
+                    jsContent += `// Total: ${produtos.length} produtos (${camisas.length} camisas + ${calcas.length} calças + ${tenis.length} tênis)\n`;
                     jsContent += `// ============================================\n\n`;
                     jsContent += `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
                     
                     camisas.forEach((produto, index) => {
-                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',`;
             
-                        // Adicionar array de imagens
                         if(produto.imagens && produto.imagens.length > 0) {
+                            jsContent += `\n        imagens: [`;
                             produto.imagens.forEach((img, imgIndex) => {
                                 jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
                             });
                             jsContent += `\n        ],`;
                         } else {
-                            jsContent += `],`;
+                            jsContent += `\n        imagens: [],`;
                         }
                         
                         jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
@@ -2444,30 +2410,47 @@
                     jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
                     
                     calcas.forEach((produto, index) => {
-                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',`;
             
-                        // Adicionar array de imagens
                         if(produto.imagens && produto.imagens.length > 0) {
+                            jsContent += `\n        imagens: [`;
                             produto.imagens.forEach((img, imgIndex) => {
                                 jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
                             });
                             jsContent += `\n        ],`;
                         } else {
-                            jsContent += `],`;
+                            jsContent += `\n        imagens: [],`;
                         }
                         
                         jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
                     });
                     
+                    jsContent += `,\n    \n    // ======================================\n    // TÊNIS - ${tenis.length} PRODUTOS\n    // ======================================`;
+                    
+                    tenis.forEach((produto, index) => {
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',`;
+            
+                        if(produto.imagens && produto.imagens.length > 0) {
+                            jsContent += `\n        imagens: [`;
+                            produto.imagens.forEach((img, imgIndex) => {
+                                jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                            });
+                            jsContent += `\n        ],`;
+                        } else {
+                            jsContent += `\n        imagens: [],`;
+                        }
+                        
+                        jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < tenis.length - 1 ? ',' : ''}`;
+                    });
+                    
                     jsContent += `\n];`;
                     
-                    // Criar arquivo para download
                     const blob = new Blob([jsContent], { type: 'application/javascript;charset=utf-8' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
                     const dateStr = new Date().toISOString().split('T')[0];
-                    a.download = `jordanwearstore-produtos-${dateStr}.js`;
+                    a.download = `jordanstore-produtos-${dateStr}.js`;
                     
                     document.body.appendChild(a);
                     a.click();
@@ -2492,23 +2475,23 @@
                 showLoading(true);
                 
                 setTimeout(() => {
-                    // Gerar código JS
                     const camisas = produtos.filter(p => p.categoria === 'camisas');
                     const calcas = produtos.filter(p => p.categoria === 'calcas');
+                    const tenis = produtos.filter(p => p.categoria === 'tenis');
                     
                     let jsContent = `const produtos = [\n    // ======================================\n    // CAMISAS - ${camisas.length} PRODUTOS\n    // ======================================`;
                     
                     camisas.forEach((produto, index) => {
-                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',`;
             
-                        // Adicionar array de imagens
                         if(produto.imagens && produto.imagens.length > 0) {
+                            jsContent += `\n        imagens: [`;
                             produto.imagens.forEach((img, imgIndex) => {
                                 jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
                             });
                             jsContent += `\n        ],`;
                         } else {
-                            jsContent += `],`;
+                            jsContent += `\n        imagens: [],`;
                         }
                         
                         jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < camisas.length - 1 ? ',' : ''}`;
@@ -2517,31 +2500,47 @@
                     jsContent += `,\n    \n    // ======================================\n    // CALÇAS - ${calcas.length} PRODUTOS\n    // ======================================`;
                     
                     calcas.forEach((produto, index) => {
-                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',\n        imagens: [`;
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',`;
             
-                        // Adicionar array de imagens
                         if(produto.imagens && produto.imagens.length > 0) {
+                            jsContent += `\n        imagens: [`;
                             produto.imagens.forEach((img, imgIndex) => {
                                 jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
                             });
                             jsContent += `\n        ],`;
                         } else {
-                            jsContent += `],`;
+                            jsContent += `\n        imagens: [],`;
                         }
                         
                         jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < calcas.length - 1 ? ',' : ''}`;
                     });
                     
+                    jsContent += `,\n    \n    // ======================================\n    // TÊNIS - ${tenis.length} PRODUTOS\n    // ======================================`;
+                    
+                    tenis.forEach((produto, index) => {
+                        jsContent += `\n    {\n        id: '${produto.id}',\n        nome: '${produto.nome.replace(/'/g, "\\'")}',\n        categoria: '${produto.categoria}',\n        preco: ${produto.preco},\n        estoque: ${produto.estoque},\n        imagem: '${produto.imagem}',`;
+            
+                        if(produto.imagens && produto.imagens.length > 0) {
+                            jsContent += `\n        imagens: [`;
+                            produto.imagens.forEach((img, imgIndex) => {
+                                jsContent += `\n            '${img}'${imgIndex < produto.imagens.length - 1 ? ',' : ''}`;
+                            });
+                            jsContent += `\n        ],`;
+                        } else {
+                            jsContent += `\n        imagens: [],`;
+                        }
+                        
+                        jsContent += `\n        descricao: '${(produto.descricao || '').replace(/'/g, "\\'")}'\n    }${index < tenis.length - 1 ? ',' : ''}`;
+                    });
+                    
                     jsContent += `\n];`;
                     
-                    // Copiar para área de transferência
                     navigator.clipboard.writeText(jsContent)
                         .then(() => {
                             showLoading(false);
                             showNotification(`Código com ${produtos.length} produtos copiado para a área de transferência!`, 'success');
                         })
                         .catch(err => {
-                            // Método alternativo para navegadores antigos
                             const textArea = document.createElement('textarea');
                             textArea.value = jsContent;
                             document.body.appendChild(textArea);
@@ -2558,6 +2557,87 @@
                 console.error('Erro ao copiar:', error);
                 showLoading(false);
                 showNotification('Erro ao copiar código!', 'error');
+            }
+        }
+        
+        // RESETAR PARA DADOS PADRÃO
+        function resetToDefault() {
+            if(confirm('Tem certeza que deseja resetar todos os produtos para os valores padrão? Isso irá substituir todas as alterações.')) {
+                showLoading(true);
+                
+                setTimeout(() => {
+                    // Restaurar dados originais do site
+                    const originalData = [
+                        // CAMISAS
+                        { id: 'camisa1', nome: 'Camisa Jordan Air Classic', categoria: 'camisas', preco: 299.9, estoque: 25, imagem: 'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop', imagens: [], descricao: 'Camisa clássica da linha Air Jordan com tecido premium e design icônico' },
+                        { id: 'camisa2', nome: 'Camisa Jordan Retro 23', categoria: 'camisas', preco: 289.9, estoque: 2, imagem: 'https://images.unsplash.com/photo-1516826957135-700dedea698c?w=300&h=300&fit=crop', imagens: [], descricao: 'Design retrô inspirado nos anos 90 com logo bordado' },
+                        { id: 'camisa3', nome: 'Camisa Jordan Performance', categoria: 'camisas', preco: 329.9, estoque: 12, imagem: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia de alta performance para atividades esportivas' },
+                        { id: 'camisa4', nome: 'Camisa Jordan Signature', categoria: 'camisas', preco: 349.9, estoque: 8, imagem: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição especial com assinatura bordada e detalhes premium' },
+                        { id: 'camisa5', nome: 'Camisa Jordan Street Style', categoria: 'camisas', preco: 269.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1574180045827-681f8a1a9622?w=300&h=300&fit=crop', imagens: [], descricao: 'Estilo urbano com design moderno e conforto máximo' },
+                        { id: 'camisa6', nome: 'Camisa Jordan Essentials', categoria: 'camisas', preco: 199.9, estoque: 30, imagem: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop', imagens: [], descricao: 'Básica essencial para o dia a dia, super confortável' },
+                        { id: 'camisa7', nome: 'Camisa Jordan Pro Elite', categoria: 'camisas', preco: 379.9, estoque: 5, imagem: 'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop', imagens: [], descricao: 'Linha profissional com materiais de alta qualidade' },
+                        { id: 'camisa8', nome: 'Camisa Jordan Night Game', categoria: 'camisas', preco: 319.9, estoque: 22, imagem: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop', imagens: [], descricao: 'Design elegante para jogos noturnos e eventos especiais' },
+                        { id: 'camisa9', nome: 'Camisa Jordan Summer Edition', categoria: 'camisas', preco: 239.9, estoque: 14, imagem: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição verão com tecido leve e respirabilidade máxima' },
+                        { id: 'camisa10', nome: 'Camisa Jordan Limited Edition', categoria: 'camisas', preco: 459.9, estoque: 3, imagem: 'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição limitada numerada, apenas 100 unidades produzidas' },
+                        { id: 'camisa11', nome: 'Camisa Jordan Air Max Pro', categoria: 'camisas', preco: 329.9, estoque: 20, imagem: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia Air Max para máximo conforto e estilo' },
+                        { id: 'camisa12', nome: 'Camisa Jordan Urban Flex', categoria: 'camisas', preco: 279.9, estoque: 16, imagem: 'https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300&h=300&fit=crop', imagens: [], descricao: 'Flexibilidade urbana com design contemporâneo' },
+                        { id: 'camisa13', nome: 'Camisa Jordan Court Vision', categoria: 'camisas', preco: 299.9, estoque: 11, imagem: 'https://images.unsplash.com/photo-1552374196-1ab2a1c593e8?w=300&h=300&fit=crop', imagens: [], descricao: 'Inspirada nas quadras com estilo esportivo moderno' },
+                        { id: 'camisa14', nome: 'Camisa Jordan Heritage', categoria: 'camisas', preco: 349.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1551028719-00167b16eac5?w=300&h=300&fit=crop', imagens: [], descricao: 'Herança Jordan com detalhes clássicos e modernos' },
+                        { id: 'camisa15', nome: 'Camisa Jordan Bounce', categoria: 'camisas', preco: 269.9, estoque: 19, imagem: 'https://images.unsplash.com/photo-1594032194509-0056023973b2?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia Bounce para liberdade de movimento' },
+                        { id: 'camisa16', nome: 'Camisa Jordan React', categoria: 'camisas', preco: 389.9, estoque: 9, imagem: 'https://images.unsplash.com/photo-1523381210434-271e8be1f52b?w=300&h=300&fit=crop', imagens: [], descricao: 'Conforto React com resposta energética premium' },
+                        { id: 'camisa17', nome: 'Camisa Jordan Zoom', categoria: 'camisas', preco: 319.9, estoque: 13, imagem: 'https://images.unsplash.com/photo-1544441893-675973e31985?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia Zoom para velocidade e agilidade' },
+                        { id: 'camisa18', nome: 'Camisa Jordan FlyEase', categoria: 'camisas', preco: 279.9, estoque: 21, imagem: 'https://images.unsplash.com/photo-1503342394128-c104d54dba01?w=300&h=300&fit=crop', imagens: [], descricao: 'Sistema FlyEase para fácil uso e máximo conforto' },
+                        
+                        // CALÇAS
+                        { id: 'calca1', nome: 'Calça Jeans Jordan Classic', categoria: 'calcas', preco: 389.9, estoque: 20, imagem: 'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop', imagens: [], descricao: 'Jeans clássico com elastano para máximo conforto' },
+                        { id: 'calca2', nome: 'Calça Cargo Jordan Utility', categoria: 'calcas', preco: 329.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop', imagens: [], descricao: 'Cargo prática com múltiplos bolsos e design utilitário' },
+                        { id: 'calca3', nome: 'Calça Moletom Jordan Comfort', categoria: 'calcas', preco: 279.9, estoque: 25, imagem: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop', imagens: [], descricao: 'Moletom ultra confortável para relaxar em estilo' },
+                        { id: 'calca4', nome: 'Calça Chino Jordan Executive', categoria: 'calcas', preco: 349.9, estoque: 18, imagem: 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop', imagens: [], descricao: 'Chino executivo para ocasiões formais e casuais' },
+                        { id: 'calca5', nome: 'Calça Jogger Jordan Sport', categoria: 'calcas', preco: 299.9, estoque: 22, imagem: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop', imagens: [], descricao: 'Jogger esportiva com ajuste perfeito e mobilidade' },
+                        { id: 'calca6', nome: 'Calça Social Jordan Premium', categoria: 'calcas', preco: 429.9, estoque: 10, imagem: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop', imagens: [], descricao: 'Social premium com corte italiano e tecido de alta qualidade' },
+                        { id: 'calca7', nome: 'Calça Tactel Jordan Performance', categoria: 'calcas', preco: 319.9, estoque: 12, imagem: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop', imagens: [], descricao: 'Tactel de performance para atividades físicas intensas' },
+                        { id: 'calca8', nome: 'Calça Wide Leg Jordan', categoria: 'calcas', preco: 369.9, estoque: 8, imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop', imagens: [], descricao: 'Wide leg fashion com corte moderno e tendência streetwear' },
+                        { id: 'calca9', nome: 'Calça Linho Jordan Summer', categoria: 'calcas', preco: 289.9, estoque: 16, imagem: 'https://images.unsplash.com/photo-1594633312681-425c7b97ccd1?w=300&h=300&fit=crop', imagens: [], descricao: 'Linho leve e respirável para os dias mais quentes' },
+                        { id: 'calca10', nome: 'Calça Couro Jordan Urban', categoria: 'calcas', preco: 599.9, estoque: 1, imagem: 'https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?w=300&h=300&fit=crop', imagens: [], descricao: 'Couro legítimo com design urbano e estilo ousado' },
+                        { id: 'calca11', nome: 'Calça Sarja Jordan Slim', categoria: 'calcas', preco: 339.9, estoque: 17, imagem: 'https://images.unsplash.com/photo-1581349488280-6f2a3eb2a1f2?w=300&h=300&fit=crop', imagens: [], descricao: 'Sarja slim fit com corte moderno e ajuste perfeito' },
+                        { id: 'calca12', nome: 'Calça Tactel Jordan Active', categoria: 'calcas', preco: 299.9, estoque: 14, imagem: 'https://images.unsplash.com/photo-1593032465171-72c54d44c0a6?w=300&h=300&fit=crop', imagens: [], descricao: 'Tactel para atividades físicas com máxima liberdade' },
+                        { id: 'calca13', nome: 'Calça Moletom Jordan Tech', categoria: 'calcas', preco: 319.9, estoque: 11, imagem: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?w=300&h=300&fit=crop', imagens: [], descricao: 'Moletom tech fleece com tecnologia térmica avançada' },
+                        { id: 'calca14', nome: 'Calça Jeans Jordan Skinny', categoria: 'calcas', preco: 379.9, estoque: 9, imagem: 'https://images.unsplash.com/photo-1582418702059-97ebafb35d09?w=300&h=300&fit=crop', imagens: [], descricao: 'Jeans skinny fit com elastano e corte moderno' },
+                        { id: 'calca15', nome: 'Calça Cargo Jordan Military', categoria: 'calcas', preco: 349.9, estoque: 13, imagem: 'https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=300&h=300&fit=crop', imagens: [], descricao: 'Cargo estilo militar com múltiplos bolsos funcionais' },
+                        { id: 'calca16', nome: 'Calça Sarja Jordan Regular', categoria: 'calcas', preco: 289.9, estoque: 19, imagem: 'https://images.unsplash.com/photo-1542272604-787c3835535d?w=300&h=300&fit=crop', imagens: [], descricao: 'Sarja regular fit para uso casual e confortável' },
+                        { id: 'calca17', nome: 'Calça Tactel Jordan Pro', categoria: 'calcas', preco: 359.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1475178626620-a4d074967452?w=300&h=300&fit=crop', imagens: [], descricao: 'Tactel profissional para alto rendimento esportivo' },
+                        { id: 'calca18', nome: 'Calça Jeans Jordan Relaxed', categoria: 'calcas', preco: 329.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1576995853123-5a10305d93c0?w=300&h=300&fit=crop', imagens: [], descricao: 'Jeans relaxed fit para máximo conforto no dia a dia' },
+                        
+                        // TÊNIS
+                        { id: 'tenis1', nome: 'Air Jordan 1 Retro High OG', categoria: 'tenis', preco: 1299.9, estoque: 8, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Clássico absoluto, edição original com design icônico' },
+                        { id: 'tenis2', nome: 'Air Jordan 4 Retro "Bred"', categoria: 'tenis', preco: 1499.9, estoque: 5, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição Black/Red, uma das mais desejadas da linha' },
+                        { id: 'tenis3', nome: 'Air Jordan 11 Retro "Concord"', categoria: 'tenis', preco: 1399.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Design elegante com sola de gel e detalhes em patent leather' },
+                        { id: 'tenis4', nome: 'Air Jordan 3 Retro "White Cement"', categoria: 'tenis', preco: 1199.9, estoque: 10, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Primeiro modelo assinado por Tinker Hatfield' },
+                        { id: 'tenis5', nome: 'Air Jordan 6 Retro "Infrared"', categoria: 'tenis', preco: 1249.9, estoque: 6, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Modelo usado por MJ na primeira conquista do título da NBA' },
+                        { id: 'tenis6', nome: 'Air Jordan 12 Retro "Flu Game"', categoria: 'tenis', preco: 1349.9, estoque: 9, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Famoso "Flu Game", edição histórica' },
+                        { id: 'tenis7', nome: 'Air Jordan 5 Retro "Grape"', categoria: 'tenis', preco: 1149.9, estoque: 12, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Clássico grape com detalhes em roxo e verde' },
+                        { id: 'tenis8', nome: 'Air Jordan 13 Retro "He Got Game"', categoria: 'tenis', preco: 1299.9, estoque: 8, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Inspirado no filme "He Got Game", design futurista' },
+                        { id: 'tenis9', nome: 'Air Jordan 1 Mid "Chicago"', categoria: 'tenis', preco: 899.9, estoque: 15, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Versão Mid do clássico Chicago, mais acessível' },
+                        { id: 'tenis10', nome: 'Jordan Why Not Zer0.4', categoria: 'tenis', preco: 799.9, estoque: 20, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Assinatura de Russell Westbrook, design agressivo' },
+                        { id: 'tenis11', nome: 'Air Jordan 34 Low', categoria: 'tenis', preco: 1199.9, estoque: 11, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia Eclipse Plate, máximo desempenho' },
+                        { id: 'tenis12', nome: 'Jordan Delta 2', categoria: 'tenis', preco: 699.9, estoque: 18, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Conforto premium para o dia a dia' },
+                        { id: 'tenis13', nome: 'Air Jordan 1 Low OG', categoria: 'tenis', preco: 849.9, estoque: 14, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Versão low do clássico, perfeita para casual' },
+                        { id: 'tenis14', nome: 'Jordan React Elevation', categoria: 'tenis', preco: 749.9, estoque: 16, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Tecnologia React para máximo conforto' },
+                        { id: 'tenis15', nome: 'Air Jordan 7 Retro "Hare"', categoria: 'tenis', preco: 1249.9, estoque: 7, imagem: 'https://images.unsplash.com/photo-1600185365483-26d7a4cc7519?w=300&h=300&fit=crop', imagens: [], descricao: 'Edição especial inspirada no personagem Bugs Bunny' },
+                        { id: 'tenis16', nome: 'Jordan Proto-React', categoria: 'tenis', preco: 599.9, estoque: 22, imagem: 'https://images.unsplash.com/photo-1605348532760-6753d2c43329?w=300&h=300&fit=crop', imagens: [], descricao: 'Design moderno com amortecimento React' },
+                        { id: 'tenis17', nome: 'Air Jordan 8 Retro "Playoffs"', categoria: 'tenis', preco: 1299.9, estoque: 6, imagem: 'https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?w=300&h=300&fit=crop', imagens: [], descricao: 'Modelo usado por MJ nos playoffs de 1993' },
+                        { id: 'tenis18', nome: 'Jordan Max 200', categoria: 'tenis', preco: 549.9, estoque: 25, imagem: 'https://images.unsplash.com/photo-1600269452121-4f2416e55c28?w=300&h=300&fit=crop', imagens: [], descricao: 'Conforto Air Max a preço acessível' }
+                    ];
+                    
+                    produtos = originalData;
+                    saveToStorage();
+                    editingProductId = null;
+                    renderProductsTable();
+                    updateDashboard();
+                    
+                    showLoading(false);
+                    showNotification('Produtos resetados para valores padrão!', 'success');
+                }, 1000);
             }
         }
         
@@ -2583,9 +2663,7 @@
                         
                         console.log('Tentando carregar arquivo:', file.name, 'tamanho:', content.length);
                         
-                        // Verificar se é JS
                         if (content.includes('const produtos = [')) {
-                            // Extrair array do JS
                             const startIndex = content.indexOf('const produtos = [');
                             const endIndex = content.lastIndexOf('];') + 2;
                             
@@ -2595,7 +2673,6 @@
                                     novosProdutos = eval(`(${arrayStr})`);
                                 } catch(evalError) {
                                     console.error('Erro ao avaliar array:', evalError);
-                                    // Tentar método alternativo
                                     const match = content.match(/const produtos = (\[[\s\S]*?\]);/);
                                     if (match && match[1]) {
                                         const tempFunc = new Function('return ' + match[1]);
@@ -2604,9 +2681,7 @@
                                 }
                             }
                         } else {
-                            // Tentar como JSON puro
                             novosProdutos = JSON.parse(content);
-                            // Se for objeto com propriedade produtos
                             if (novosProdutos && novosProdutos.produtos) {
                                 novosProdutos = novosProdutos.produtos;
                             }
@@ -2616,19 +2691,16 @@
                             throw new Error('Formato inválido ou array vazio');
                         }
                         
-                        // Garantir que todos os produtos tenham array de imagens
                         novosProdutos = novosProdutos.map(produto => {
                             if (!produto.imagens) {
                                 produto.imagens = [];
                             }
-                            // Garantir que a imagem principal não esteja no array de imagens
                             if (produto.imagens.includes(produto.imagem)) {
                                 produto.imagens = produto.imagens.filter(img => img !== produto.imagem);
                             }
                             return produto;
                         });
                         
-                        // Atualizar produtos
                         produtos = novosProdutos;
                         editingProductId = null;
                         saveToStorage();
@@ -2723,7 +2795,7 @@
             if (editingProductId) {
                 saveToStorage();
             }
-        }, 30000); // Salva a cada 30 segundos durante edição
+        }, 30000);
     </script>
 </body>
 </html>
